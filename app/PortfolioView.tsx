@@ -274,7 +274,7 @@ export function PortfolioView() {
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
         <a href="#s1" className={styles.logo}>
           <span className={`${styles.logoMark} ${styles.geist}`}>COMI</span>
-          <span className={styles.logoTag}>AI 伴侣产品</span>
+          <span className={styles.logoTag}>AI 陪伴产品</span>
         </a>
         <nav className={styles.nav}>
           {NAV_LINKS.map((link) => (
@@ -310,9 +310,9 @@ export function PortfolioView() {
             无限可能
           </h1>
           <p data-reveal className={styles.heroSubtitle}>
-            COMI 是一个让所有 AI 记得你的 AI 伴侣产品。
+            COMI 是一个拥有长期记忆、可以跨模型延续对话的 AI 陪伴产品。
             <br />
-            所有的话都可以接着之前的说，不需要重新开始复述。
+            无论今天选择哪一个模型，都可以接着之前的话继续说。
           </p>
           <div data-reveal className={styles.heroCtas}>
             <a href="#s2" className={styles.heroCtaPrimary}>
@@ -340,14 +340,14 @@ export function PortfolioView() {
           <div className={styles.eyebrow}>为什么做 COMI</div>
           <div>
             <h2 data-reveal className={styles.whyTitle}>
-              做项目是够的，
+              AI 会完成任务，
               <br />
-              但
+              却还不会
               <span className={styles.keywordWrap}>
-                <span className={styles.keyword}>陪伴</span>
+                <span className={styles.keyword}>持续理解</span>
                 <HandUnderline className={styles.underlineSvg} />
               </span>
-              是不够的。
+              一个人。
             </h2>
             <div className={styles.whyCards}>
               <div data-reveal data-dir="left" className={styles.whyCard}>
@@ -377,10 +377,13 @@ export function PortfolioView() {
         <div className={styles.featuresInner}>
           <div className={styles.sectionHead}>
             <h2 data-reveal className={styles.sectionTitle}>
-              三个功能，一个哲学
+              三个功能，一个关于陪伴的答案
             </h2>
             <span className={styles.eyebrow}>核心功能</span>
           </div>
+          <p data-reveal className={styles.productIntro}>
+            真正的陪伴，是每次回来，都能接着上次继续。
+          </p>
           <div className={styles.featureGrid}>
             <div data-reveal className={styles.featureCard}>
               <div className={styles.featureIcon} />
