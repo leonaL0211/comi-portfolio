@@ -666,8 +666,8 @@ export function PortfolioView() {
             ))}
           </div>
           <p data-reveal className={styles.stackClosing}>
-            AI 产品经理不需要从 0 手搓每一行代码，但需要知道每一个模块
-            <span className={styles.stackClosingAccent}>为什么这样搭</span>。
+            这套技术与 AI 工具链，让 COMI 从一个真实需求，走向
+            <span className={styles.stackClosingAccent}>可运行、可验证的产品形态</span>。
           </p>
         </div>
       </section>
