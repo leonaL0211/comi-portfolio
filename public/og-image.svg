@@ -1,0 +1,90 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glowA" cx="28%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#FFC8AA" stop-opacity="0.32" />
+      <stop offset="60%" stop-color="#FFC8AA" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowB" cx="82%" cy="86%" r="55%">
+      <stop offset="0%" stop-color="#E8B2C4" stop-opacity="0.2" />
+      <stop offset="55%" stop-color="#E8B2C4" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="commaGlow" cx="50%" cy="46%" r="52%">
+      <stop offset="0%" stop-color="#FFC1A3" stop-opacity="0.6" />
+      <stop offset="45%" stop-color="#FFCDBE" stop-opacity="0.22" />
+      <stop offset="70%" stop-color="#FFCDBE" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#FDFAF8" />
+  <rect width="1200" height="630" fill="url(#glowA)" />
+  <rect width="1200" height="630" fill="url(#glowB)" />
+
+  <!-- comma mark: Latin glyph used deliberately for its full curled shape
+       (the CJK fullwidth "，" renders as a tiny mark at large sizes in
+       most fonts, since it carries wide side-bearings for vertical text) -->
+  <circle cx="930" cy="340" r="230" fill="url(#commaGlow)" />
+  <text
+    x="930"
+    y="420"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="620"
+    fill="#E89B7B"
+  >,</text>
+
+  <!-- eyebrow -->
+  <circle cx="84" cy="140" r="5" fill="#E89B7B" />
+  <text
+    x="100"
+    y="147"
+    font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif"
+    font-size="20"
+    letter-spacing="1"
+    fill="#8A807C"
+  >产品作品集 · LEONA LIU · 2026</text>
+
+  <!-- title -->
+  <text
+    x="78"
+    y="258"
+    font-family="'PingFang SC', 'Microsoft YaHei', 'Songti SC', serif"
+    font-size="74"
+    font-weight="700"
+    fill="#2A2422"
+  >逗号<tspan fill="#E89B7B">，</tspan>意味着</text>
+  <text
+    x="78"
+    y="342"
+    font-family="'PingFang SC', 'Microsoft YaHei', 'Songti SC', serif"
+    font-size="74"
+    font-weight="700"
+    fill="#2A2422"
+  >无限可能</text>
+
+  <!-- subtitle -->
+  <text
+    x="78"
+    y="404"
+    font-family="'PingFang SC', 'Microsoft YaHei', sans-serif"
+    font-size="25"
+    fill="#6E6560"
+  >COMI 是一个让所有 AI 记得你的 AI 伴侣产品</text>
+
+  <!-- wordmark -->
+  <text
+    x="78"
+    y="560"
+    font-family="Arial, sans-serif"
+    font-size="28"
+    font-weight="600"
+    letter-spacing="1"
+    fill="#2A2422"
+  >COMI</text>
+  <text
+    x="152"
+    y="560"
+    font-family="'PingFang SC', 'Microsoft YaHei', sans-serif"
+    font-size="16"
+    fill="#8A807C"
+  >AI 伴侣产品</text>
+</svg>
