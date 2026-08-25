@@ -1,0 +1,70 @@
+"use client";
+
+import styles from "./portfolio.module.css";
+import { AboutMeShowcase } from "./AboutMeShowcase";
+
+/**
+ * Full "关于我" gallery for the memory-feature deep dive: three
+ * roughly-equal columns, left to right — main page (scrollable) / empty
+ * state / edit state + chat toast stacked together — mirroring the
+ * phoneFrame sizing and card-tilt language already used by the
+ * "产品界面" showcase above it.
+ *
+ * Sources (Figma): 2137:2 / 2140:2 (main), 2144:2 / 2146:2 (empty),
+ * 2149:2 / 2150:2 (edit state), 2149:28 / 2150:28 (chat toast).
+ */
+export function AboutMeGallery({ dark }: { dark: boolean }) {
+  return (
+    <div className={styles.memoryGallery}>
+      <figure data-reveal data-dir="left" className={styles.memoryGalleryCol}>
+        <AboutMeShowcase dark={dark} frameClassName={styles.memoryEqualFrame} />
+        <figcaption className={styles.memoryCaption}>
+          <strong>关于我 · 主页</strong>
+          <span>四类记忆一次看全，用右下角按钮翻看完整卡片</span>
+        </figcaption>
+      </figure>
+
+      <figure data-reveal className={styles.memoryGalleryCol}>
+        <div className={`${styles.phoneFrame} ${styles.memoryEqualFrame}`}>
+          <img
+            src={dark ? "/images/app-aboutme-empty-dark.png" : "/images/app-aboutme-empty-light.png"}
+            alt="COMI 关于我空状态：中央写着'我们还在慢慢认识'，配一个 COMI 小角色"
+            className={styles.aboutMeImg}
+          />
+        </div>
+        <figcaption className={styles.memoryCaption}>
+          <strong>空状态</strong>
+          <span>还没有记忆时，大留白 + 一句轻描述</span>
+        </figcaption>
+      </figure>
+
+      <div data-reveal data-dir="right" className={styles.memoryGalleryStack}>
+        <figure>
+          <div className={styles.memoryCardFrame}>
+            <img
+              src={dark ? "/images/app-aboutme-edit-dark.png" : "/images/app-aboutme-edit-light.png"}
+              alt="COMI 关于我编辑状态：卡片原地展开为可编辑文本框，底部是取消与保存按钮"
+            />
+          </div>
+          <figcaption className={styles.memoryCaption}>
+            <strong>编辑状态</strong>
+            <span>点击编辑，卡片原地展开，可取消或保存</span>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <div className={styles.memoryCardFrame}>
+            <img
+              src={dark ? "/images/app-aboutme-toast-dark.png" : "/images/app-aboutme-toast-light.png"}
+              alt="聊天内轻反馈气泡：COMI 记住了一点关于你的事，悬浮在输入框上方"
+            />
+          </div>
+          <figcaption className={styles.memoryCaption}>
+            <strong>聊天内轻反馈</strong>
+            <span>记住一点新信息时的提示，不打断对话</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  );
+}

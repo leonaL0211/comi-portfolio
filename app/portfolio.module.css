@@ -1223,6 +1223,266 @@
   }
 }
 
+/* ── 03c Memory feature deep dive ("关于我") ──────────── */
+/* Figma source: node 2137:2 (COMI_AboutMe, Day) / 2140:2
+   (COMI_Night AboutMe). The exported card is much taller than one phone
+   screen, so it's read through a clipped 402×874 frame — the same phone
+   aspect ratio used by the .phoneFrame cards above — stepped through with
+   up/down buttons instead of a raw scroll gesture. */
+
+.memoryDeepDive {
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.memoryDeepDiveInner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.memoryPointsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.memoryPoint {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.memoryPointNo {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(232, 155, 123, 0.14);
+  color: var(--coral);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.memoryPoint h4 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.memoryPoint p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--ink-mute);
+  max-width: 34em;
+}
+
+.aboutMePhoneSize {
+  width: min(320px, 100%);
+}
+
+/* Three equal-width columns — same rhythm as .productGrid/.productCard
+   above: main page / empty state / (edit state + chat toast stacked),
+   left to right, all roughly the same footprint. */
+
+.memoryGallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(22px, 4vw, 44px);
+  margin-top: 56px;
+}
+
+.memoryGalleryCol {
+  margin: 0;
+  transform: rotate(-1.2deg) translateY(8px);
+  transition: transform 0.5s var(--bounce);
+}
+
+.memoryGalleryCol:nth-child(2) {
+  transform: rotate(1.2deg) translateY(10px);
+}
+
+.memoryGalleryCol:hover {
+  transform: translateY(-6px) rotate(0deg);
+}
+
+.memoryEqualFrame {
+  width: 100%;
+}
+
+.memoryGalleryStack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform: rotate(1deg);
+  transition: transform 0.5s var(--bounce);
+}
+
+.memoryGalleryStack:hover {
+  transform: translateY(-4px) rotate(0deg);
+}
+
+.memoryCardFrame {
+  position: relative;
+  overflow: hidden;
+  border-radius: clamp(18px, 2.4vw, 26px);
+  background: #fffdf8;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 16px 34px rgba(81, 58, 48, 0.14),
+    0 4px 12px rgba(200, 150, 130, 0.1),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.4);
+  width: 100%;
+}
+
+.memoryCardFrame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.memoryCaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.memoryCaption strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.memoryCaption span {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-ghost);
+}
+
+.aboutMeTrack {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.aboutMeTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.aboutMeImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.aboutMeFade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 64px;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.aboutMeFadeHidden {
+  opacity: 0;
+}
+
+.aboutMeFadeTop {
+  top: 0;
+  background: linear-gradient(180deg, #fffdf8 0%, rgba(255, 253, 248, 0) 100%);
+}
+
+.aboutMeFadeBottom {
+  bottom: 0;
+  background: linear-gradient(0deg, #fffdf8 0%, rgba(255, 253, 248, 0) 100%);
+}
+
+.aboutMeFadeDark.aboutMeFadeTop {
+  background: linear-gradient(180deg, #171217 0%, rgba(23, 18, 23, 0) 100%);
+}
+
+.aboutMeFadeDark.aboutMeFadeBottom {
+  background: linear-gradient(0deg, #171217 0%, rgba(23, 18, 23, 0) 100%);
+}
+
+.aboutMeControls {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2;
+}
+
+.aboutMeBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 150, 130, 0.16);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--coral-deep);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(200, 150, 130, 0.18);
+  transition:
+    transform 0.3s var(--bounce),
+    opacity 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.aboutMeBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(200, 150, 130, 0.24);
+}
+
+.aboutMeBtn:disabled {
+  opacity: 0.32;
+  cursor: default;
+  box-shadow: none;
+}
+
+.aboutMeControlsDark .aboutMeBtn {
+  border-color: rgba(244, 221, 235, 0.16);
+  background: rgba(38, 30, 38, 0.85);
+  color: #f3c8dc;
+  box-shadow: 0 8px 20px rgba(10, 6, 10, 0.35);
+}
+
+@media (max-width: 860px) {
+  .memoryGallery {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .memoryGalleryCol,
+  .memoryGalleryCol:nth-child(2),
+  .memoryGalleryStack {
+    transform: none;
+    width: 100%;
+  }
+}
+
 /* ── 04 Desktop pet ─────────────────────────────────── */
 
 .pet {

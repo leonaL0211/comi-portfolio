@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { AboutMeGallery } from "./AboutMeGallery";
 import { ChatDemo } from "./ChatDemo";
 import { MascotFace } from "./MascotFace";
 import { PetRotator } from "./PetRotator";
@@ -26,12 +27,13 @@ const NAV_LINKS = [
   { href: "#s2", label: "为什么" },
   { href: "#s3", label: "功能" },
   { href: "#s3b", label: "界面" },
+  { href: "#s3c", label: "记忆库" },
   { href: "#s4", label: "桌面陪伴" },
   { href: "#s5", label: "决策日志" },
   { href: "#s6", label: "工具链" },
 ];
 
-const DOT_SECTIONS = ["s1", "s2", "s3", "s3b", "s4", "s5", "s6", "s7"];
+const DOT_SECTIONS = ["s1", "s2", "s3", "s3b", "s3c", "s4", "s5", "s6", "s7"];
 
 const PRODUCT_SCREENS = [
   {
@@ -486,7 +488,52 @@ export function PortfolioView() {
         </div>
       </section>
 
-      <SeamBand variant={0} prevColor="#faf4f2" nextColor="#fdfaf8" />
+      <SeamBand variant={2} prevColor="#fdfaf8" nextColor="#fdfaf8" />
+
+      {/* ── 03c Memory feature deep dive ── */}
+      <section id="s3c" className={`${styles.section} ${styles.memoryDeepDive}`}>
+        <div className={styles.memoryDeepDiveInner}>
+          <div className={styles.sectionHead}>
+            <h2 data-reveal className={styles.sectionTitle}>
+              从&ldquo;Memory&rdquo;到&ldquo;关于我&rdquo;
+            </h2>
+            <span className={styles.eyebrow}>功能详解 · 记忆库</span>
+          </div>
+          <p data-reveal className={styles.productIntro}>
+            记忆库最早的界面直接叫 Memory——技术上准确，但读起来像在管理一个数据库。COMI
+            把它重新设计成&ldquo;关于我&rdquo;：不是一个需要你主动填写的资料页，而是 COMI
+            在长期对话里，对你慢慢形成的理解。
+          </p>
+
+          <div data-reveal className={styles.memoryPointsRow}>
+            <div className={styles.memoryPoint}>
+              <span className={`${styles.geist} ${styles.memoryPointNo}`}>01</span>
+              <div>
+                <h4>AI 主动理解，不是表单</h4>
+                <p>COMI 从对话中自动沉淀值得长期记住的信息，你不需要主动整理或填写资料。</p>
+              </div>
+            </div>
+            <div className={styles.memoryPoint}>
+              <span className={`${styles.geist} ${styles.memoryPointNo}`}>02</span>
+              <div>
+                <h4>四类记忆，不做数据看板</h4>
+                <p>基本信息、偏好与习惯、长期目标、最近在做——用自然语言呈现，不是表格和字段。</p>
+              </div>
+            </div>
+            <div className={styles.memoryPoint}>
+              <span className={`${styles.geist} ${styles.memoryPointNo}`}>03</span>
+              <div>
+                <h4>最终控制权始终是你的</h4>
+                <p>每一条记忆都能原地编辑或删除，AI 的理解可能出错，你随时可以纠正它。</p>
+              </div>
+            </div>
+          </div>
+
+          <AboutMeGallery dark={isDarkPreview} />
+        </div>
+      </section>
+
+      <SeamBand variant={0} prevColor="#fdfaf8" nextColor="#fdfaf8" />
 
       {/* ── 04 Desktop companion ── */}
       <section id="s4" className={`${styles.section} ${styles.pet}`}>
