@@ -19,6 +19,7 @@ export function AboutMeGallery({ dark }: { dark: boolean }) {
       <figure data-reveal data-dir="left" className={styles.memoryGalleryCol}>
         <AboutMeShowcase dark={dark} frameClassName={styles.memoryEqualFrame} />
         <figcaption className={styles.memoryCaption}>
+          <span className={styles.memoryCaptionStep}>01 · 进入</span>
           <strong>关于我 · 主页</strong>
           <span>四类记忆一次看全，用右下角按钮翻看完整卡片</span>
         </figcaption>
@@ -33,8 +34,9 @@ export function AboutMeGallery({ dark }: { dark: boolean }) {
           />
         </div>
         <figcaption className={styles.memoryCaption}>
-          <strong>空状态</strong>
-          <span>还没有记忆时，大留白 + 一句轻描述</span>
+          <span className={styles.memoryCaptionStep}>02 · 空状态</span>
+          <strong>还没有记忆</strong>
+          <span>大留白 + 一句轻描述，不写&ldquo;暂无数据&rdquo;</span>
         </figcaption>
       </figure>
 
@@ -47,8 +49,9 @@ export function AboutMeGallery({ dark }: { dark: boolean }) {
             />
           </div>
           <figcaption className={styles.memoryCaption}>
+            <span className={styles.memoryCaptionStep}>03 · 编辑</span>
             <strong>编辑状态</strong>
-            <span>点击编辑，卡片原地展开，可取消或保存</span>
+            <span>用户可以直接修正 AI 的理解，并保存为正式记忆</span>
           </figcaption>
         </figure>
 
@@ -60,8 +63,9 @@ export function AboutMeGallery({ dark }: { dark: boolean }) {
             />
           </div>
           <figcaption className={styles.memoryCaption}>
-            <strong>聊天内轻反馈</strong>
-            <span>记住一点新信息时的提示，不打断对话</span>
+            <span className={styles.memoryCaptionStep}>04 · 自动沉淀</span>
+            <strong>自动记忆反馈</strong>
+            <span>COMI 完成记忆沉淀后，用轻量提示告知用户，不打断聊天</span>
           </figcaption>
         </figure>
       </div>

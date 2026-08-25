@@ -499,6 +499,11 @@ export function PortfolioView() {
             </h2>
             <span className={styles.eyebrow}>功能详解 · 记忆库</span>
           </div>
+          <p data-reveal className={styles.memoryInsight}>
+            <span className={styles.geist}>Early user testing insight</span>
+            <span className={styles.memoryInsightDivider}>·</span>
+            用户认为&ldquo;Memory&rdquo;含义偏技术，更期待 AI 在持续对话中逐渐了解自己。
+          </p>
           <p data-reveal className={styles.productIntro}>
             记忆库最早的界面直接叫 Memory——技术上准确，但读起来像在管理一个数据库。COMI
             把它重新设计成&ldquo;关于我&rdquo;：不是一个需要你主动填写的资料页，而是 COMI
@@ -516,8 +521,11 @@ export function PortfolioView() {
             <div className={styles.memoryPoint}>
               <span className={`${styles.geist} ${styles.memoryPointNo}`}>02</span>
               <div>
-                <h4>四类记忆，不做数据看板</h4>
-                <p>基本信息、偏好与习惯、长期目标、最近在做——用自然语言呈现，不是表格和字段。</p>
+                <h4>按用户理解组织记忆，而非按技术结构展示</h4>
+                <p>
+                  记忆仍分基本信息、偏好与习惯、长期目标、最近在做，但不暴露底层 Memory
+                  结构——你感知到的是&ldquo;COMI 了解了什么&rdquo;，而不是&ldquo;系统存了什么字段&rdquo;。
+                </p>
               </div>
             </div>
             <div className={styles.memoryPoint}>
