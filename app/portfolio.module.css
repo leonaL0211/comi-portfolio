@@ -1240,6 +1240,29 @@
   margin: 0 auto;
 }
 
+/* Tiny, unweighted provenance note — signals this redesign traces back to
+   a real testing insight, not just a visual pass. Deliberately styled
+   below the eyebrow's visual weight: no card, no background block. */
+.memoryInsight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+
+.memoryInsight .geist {
+  color: var(--ink-ghost);
+  letter-spacing: 0.02em;
+}
+
+.memoryInsightDivider {
+  color: var(--ink-ghost);
+}
+
 .memoryPointsRow {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1356,6 +1379,17 @@
   margin-top: 12px;
   text-align: center;
   font-size: 13px;
+}
+
+/* Small step tag ("01 · 进入" … "04 · 自动沉淀") that turns the four
+   gallery cards into an explicit read order: enter → empty → edit →
+   auto-saved. Typographic only — no new card or color block. */
+.memoryCaptionStep {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--coral);
+  opacity: 0.72;
 }
 
 .memoryCaption strong {
