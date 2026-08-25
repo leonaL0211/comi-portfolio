@@ -26,14 +26,14 @@ import styles from "./portfolio.module.css";
 const NAV_LINKS = [
   { href: "#s2", label: "为什么" },
   { href: "#s3", label: "功能" },
+  { href: "#s4", label: "桌面陪伴" },
   { href: "#s3b", label: "界面" },
   { href: "#s3c", label: "记忆库" },
-  { href: "#s4", label: "桌面陪伴" },
   { href: "#s5", label: "决策日志" },
   { href: "#s6", label: "工具链" },
 ];
 
-const DOT_SECTIONS = ["s1", "s2", "s3", "s3b", "s3c", "s4", "s5", "s6", "s7"];
+const DOT_SECTIONS = ["s1", "s2", "s3", "s4", "s3b", "s3c", "s5", "s6", "s7"];
 
 const PRODUCT_SCREENS = [
   {
@@ -420,6 +420,99 @@ export function PortfolioView() {
         </div>
       </section>
 
+      <SeamBand variant={0} prevColor="#fdfaf8" nextColor="#fdfaf8" />
+
+      {/* ── 04 Desktop companion ── */}
+      <section id="s4" className={`${styles.section} ${styles.pet}`}>
+        <div className={styles.petGlow} />
+        <div className={styles.petInner}>
+          <div className={styles.sectionHead}>
+            <h2 data-reveal className={`${styles.sectionTitle} ${styles.petLeadTitle}`}>
+              让 AI 的存在，成为一种<span className={styles.accentText}>视觉上的陪伴</span>
+            </h2>
+            <span className={styles.eyebrow}>桌面陪伴形态</span>
+          </div>
+          <p data-reveal className={styles.petIntro}>
+            基于开源项目 <span className={styles.geist}>Clawd on desk</span>{" "}
+            集成，COMI 在此之上做了三层设计——把桌宠从静态装饰变成 AI 状态的实时具身化载体。
+          </p>
+
+          <div className={styles.petGrid}>
+            <div data-reveal data-dir="left" className={styles.petCard}>
+              <div className={styles.petSlot}>
+                <img
+                  src="/images/pet/bounce.gif"
+                  alt="COMI 桌宠在桌面上弹跳漫游"
+                  className={styles.petSlotImg}
+                />
+              </div>
+              <div className={styles.petCardBody}>
+                <h4>满屏漫游</h4>
+                <p>突破角落停留，让陪伴感占据整个桌面。</p>
+              </div>
+            </div>
+            <div data-reveal className={styles.petCard}>
+              <div className={`${styles.petSlot} ${styles.petSlotAlt}`}>
+                <PetRotator />
+              </div>
+              <div className={styles.petCardBody}>
+                <h4>随机动作轮换</h4>
+                <p>陪伴产品的核心悖论：可预测的 AI 是工具，不可预测的 AI 才像伙伴。</p>
+              </div>
+            </div>
+            <div data-reveal data-dir="right" className={styles.petCard}>
+              <div className={styles.petTripleGrid}>
+                <div className={styles.petMiniSlot}>
+                  <img src="/images/pet/typing.gif" alt="COMI 打字动作" className={styles.petMiniSlotImg} />
+                  <span>打字</span>
+                </div>
+                <div className={`${styles.petMiniSlot} ${styles.petMiniSlotB}`}>
+                  <img
+                    src="/images/pet/celebrate.gif"
+                    alt="COMI 雀跃动作"
+                    className={styles.petMiniSlotImg}
+                  />
+                  <span>雀跃</span>
+                </div>
+                <div className={`${styles.petMiniSlot} ${styles.petMiniSlotC}`}>
+                  <img
+                    src="/images/pet/melt-error.gif"
+                    alt="COMI 趴下显示 error 动作"
+                    className={styles.petMiniSlotImg}
+                  />
+                  <span>趴下</span>
+                </div>
+              </div>
+              <div className={styles.petCardBody}>
+                <h4>AI 状态的具身化翻译</h4>
+                <p>
+                  传统 UI 用 loading 和 error 提醒你&ldquo;这是机器&rdquo;，COMI
+                  用身体语言让你觉得&ldquo;它是一个伙伴&rdquo;。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal className={styles.petTable}>
+            <div className={styles.petTableHead}>
+              <span>AI 后端状态</span>
+              <span>传统 UI</span>
+              <span>COMI 桌宠</span>
+            </div>
+            {PET_ROWS.map((row) => (
+              <div key={row.state} className={styles.petRow}>
+                <span className={styles.petRowState}>{row.state}</span>
+                <span className={styles.petRowOld}>{row.old}</span>
+                <span className={styles.petRowComi}>{row.comi}</span>
+              </div>
+            ))}
+            <div className={styles.petQuote}>
+              <p>陪伴产品最脆弱的时刻，是用户意识到自己在跟机器打交道的瞬间。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <SeamBand variant={2} prevColor="#fdfaf8" nextColor="#faf4f2" />
 
       {/* ── 03b Product interface showcase ── */}
@@ -537,99 +630,6 @@ export function PortfolioView() {
           </div>
 
           <AboutMeGallery dark={isDarkPreview} />
-        </div>
-      </section>
-
-      <SeamBand variant={0} prevColor="#fdfaf8" nextColor="#fdfaf8" />
-
-      {/* ── 04 Desktop companion ── */}
-      <section id="s4" className={`${styles.section} ${styles.pet}`}>
-        <div className={styles.petGlow} />
-        <div className={styles.petInner}>
-          <div className={styles.sectionHead}>
-            <h2 data-reveal className={`${styles.sectionTitle} ${styles.petLeadTitle}`}>
-              让 AI 的存在，成为一种<span className={styles.accentText}>视觉上的陪伴</span>
-            </h2>
-            <span className={styles.eyebrow}>桌面陪伴形态</span>
-          </div>
-          <p data-reveal className={styles.petIntro}>
-            基于开源项目 <span className={styles.geist}>Clawd on desk</span>{" "}
-            集成，COMI 在此之上做了三层设计——把桌宠从静态装饰变成 AI 状态的实时具身化载体。
-          </p>
-
-          <div className={styles.petGrid}>
-            <div data-reveal data-dir="left" className={styles.petCard}>
-              <div className={styles.petSlot}>
-                <img
-                  src="/images/pet/bounce.gif"
-                  alt="COMI 桌宠在桌面上弹跳漫游"
-                  className={styles.petSlotImg}
-                />
-              </div>
-              <div className={styles.petCardBody}>
-                <h4>满屏漫游</h4>
-                <p>突破角落停留，让陪伴感占据整个桌面。</p>
-              </div>
-            </div>
-            <div data-reveal className={styles.petCard}>
-              <div className={`${styles.petSlot} ${styles.petSlotAlt}`}>
-                <PetRotator />
-              </div>
-              <div className={styles.petCardBody}>
-                <h4>随机动作轮换</h4>
-                <p>陪伴产品的核心悖论：可预测的 AI 是工具，不可预测的 AI 才像伙伴。</p>
-              </div>
-            </div>
-            <div data-reveal data-dir="right" className={styles.petCard}>
-              <div className={styles.petTripleGrid}>
-                <div className={styles.petMiniSlot}>
-                  <img src="/images/pet/typing.gif" alt="COMI 打字动作" className={styles.petMiniSlotImg} />
-                  <span>打字</span>
-                </div>
-                <div className={`${styles.petMiniSlot} ${styles.petMiniSlotB}`}>
-                  <img
-                    src="/images/pet/celebrate.gif"
-                    alt="COMI 雀跃动作"
-                    className={styles.petMiniSlotImg}
-                  />
-                  <span>雀跃</span>
-                </div>
-                <div className={`${styles.petMiniSlot} ${styles.petMiniSlotC}`}>
-                  <img
-                    src="/images/pet/melt-error.gif"
-                    alt="COMI 趴下显示 error 动作"
-                    className={styles.petMiniSlotImg}
-                  />
-                  <span>趴下</span>
-                </div>
-              </div>
-              <div className={styles.petCardBody}>
-                <h4>AI 状态的具身化翻译</h4>
-                <p>
-                  传统 UI 用 loading 和 error 提醒你&ldquo;这是机器&rdquo;，COMI
-                  用身体语言让你觉得&ldquo;它是一个伙伴&rdquo;。
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div data-reveal className={styles.petTable}>
-            <div className={styles.petTableHead}>
-              <span>AI 后端状态</span>
-              <span>传统 UI</span>
-              <span>COMI 桌宠</span>
-            </div>
-            {PET_ROWS.map((row) => (
-              <div key={row.state} className={styles.petRow}>
-                <span className={styles.petRowState}>{row.state}</span>
-                <span className={styles.petRowOld}>{row.old}</span>
-                <span className={styles.petRowComi}>{row.comi}</span>
-              </div>
-            ))}
-            <div className={styles.petQuote}>
-              <p>陪伴产品最脆弱的时刻，是用户意识到自己在跟机器打交道的瞬间。</p>
-            </div>
-          </div>
         </div>
       </section>
 
