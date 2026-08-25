@@ -354,18 +354,17 @@ export function PortfolioView() {
             <div className={styles.whyCards}>
               <div data-reveal data-dir="left" className={styles.whyCard}>
                 <p>
-                  2026 年 7 月 1 日晚上，我常用的 AI 账号突然坏了。第二天有面试，我只能自学前端，接入
-                  Claude API，搭出一个 PWA 救急。这个&ldquo;急就章&rdquo;后来成了 COMI。
+                  我长期同时使用好几个 AI，也慢慢发现一个重复出现的问题：每个模型都只认识自己聊天窗口里的我。一换平台，背景、偏好、正在做的项目，都得重新说一遍。
                 </p>
               </div>
               <div data-reveal data-dir="right" className={styles.whyCard}>
                 <p>
-                  用得越久越发现一个问题：我在 Claude 聊过的思路，切换到 GPT
-                  就得重新解释一遍。项目协作可以靠总结文本传递，但陪伴不行——陪伴的本质是&ldquo;不需要重新解释自己&rdquo;。
+                  我开始意识到，这不只是&ldquo;切换模型麻烦&rdquo;。项目协作可以靠总结文本传递，但&ldquo;我是谁、习惯怎么沟通、最近在做什么&rdquo;，还是被分散存在不同模型里——问题不是聊天窗口不够好，而是我的上下文，从来没有独立存在过。
                 </p>
               </div>
               <div data-reveal className={`${styles.whyCard} ${styles.whyCardHighlight}`}>
                 <p>COMI 想做的事很简单：让所有 AI 坐在同一张桌子前，看着同一个我。</p>
+                <p className={styles.whyCardHighlightSub}>让个人记忆属于用户，而不是属于某一个模型。</p>
               </div>
             </div>
           </div>
