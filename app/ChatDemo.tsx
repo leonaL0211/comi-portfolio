@@ -12,11 +12,10 @@ import styles from "./portfolio.module.css";
  * step count, and only plays while the card is in view.
  */
 
-const USER_TEXT = "I’ve been thinking about redesigning my portfolio lately.";
-const AI_WORDS =
-  "That sounds like more than a visual update. Are you rethinking how you want your work—and yourself—to be understood?".split(
-    " ",
-  );
+const USER_TEXT = "最近总想着要不要重新设计一下我的作品集。";
+const AI_WORDS = Array.from(
+  "听起来不只是想换个样式，是不是也想重新想清楚，你想让别人怎么理解你的作品——和你自己？",
+);
 
 const TYPE_MS_PER_CHAR = 26;
 const PAUSE_AFTER_TYPE = 500;
@@ -135,20 +134,13 @@ function ChatTimeline({ onDone }: { onDone: () => void }) {
       )}
       {(phase === "replying" || phase === "done") && (
         <p className={styles.chatDemoAiText}>
-          {AI_WORDS.map((word, i) => (
-            // The space is a sibling text node, not trailing content inside
-            // the span: a space as the last character of an inline-block
-            // (needed here so `animationDelay`'s translateY actually
-            // applies) sits at the end of that box's own line and gets
-            // trimmed by the browser, silently swallowing every word gap.
-            <span key={i}>
-              <span
-                className={styles.chatDemoWord}
-                style={{ animationDelay: `${i * WORD_STAGGER_MS}ms` }}
-              >
-                {word}
-              </span>
-              {i < AI_WORDS.length - 1 ? " " : ""}
+          {AI_WORDS.map((char, i) => (
+            <span
+              key={i}
+              className={styles.chatDemoWord}
+              style={{ animationDelay: `${i * WORD_STAGGER_MS}ms` }}
+            >
+              {char}
             </span>
           ))}
         </p>

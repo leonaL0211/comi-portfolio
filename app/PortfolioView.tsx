@@ -209,6 +209,60 @@ function HandBox({ className }: { className?: string }) {
   );
 }
 
+/**
+ * Small hub-and-spoke diagram for the "LLM 圆桌" feature card: one shared
+ * memory hub in the middle, three model nodes seated around it, each
+ * connected back to the hub — a literal "round table" reading rather than
+ * a plain list of model names.
+ */
+function RoundtableDiagram({ className }: { className?: string }) {
+  const hub = { x: 52, y: 52 };
+  const nodes = [
+    { x: 52, y: 16 },
+    { x: 83.4, y: 69 },
+    { x: 20.6, y: 69 },
+  ];
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 104 104"
+      aria-hidden="true"
+    >
+      {nodes.map((n, i) => (
+        <line
+          key={i}
+          x1={hub.x}
+          y1={hub.y}
+          x2={n.x}
+          y2={n.y}
+          stroke="rgba(240, 168, 138, 0.4)"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+        />
+      ))}
+      {nodes.map((n, i) => (
+        <circle
+          key={i}
+          cx={n.x}
+          cy={n.y}
+          r={9}
+          fill="rgba(255, 255, 255, 0.1)"
+          stroke="rgba(255, 255, 255, 0.4)"
+          strokeWidth={1.5}
+        />
+      ))}
+      <circle
+        cx={hub.x}
+        cy={hub.y}
+        r={14}
+        fill="rgba(240, 168, 138, 0.9)"
+        stroke="rgba(255, 255, 255, 0.3)"
+        strokeWidth={1.5}
+      />
+    </svg>
+  );
+}
+
 export function PortfolioView() {
   const [scrolled, setScrolled] = useState(false);
   const [isDarkPreview, setIsDarkPreview] = useState(false);
@@ -401,7 +455,7 @@ export function PortfolioView() {
               </p>
             </div>
             <div data-reveal className={`${styles.featureCard} ${styles.featureCardDark}`}>
-              <div className={`${styles.featureIcon} ${styles.featureIconRoundtable}`} />
+              <RoundtableDiagram className={styles.featureRoundtable} />
               <h3 className={styles.featureTitle}>
                 LLM 圆桌 <span className={`${styles.geist} ${styles.featureVersion}`}>1.0</span>
               </h3>
@@ -534,13 +588,17 @@ export function PortfolioView() {
               aria-pressed={isDarkPreview}
               onClick={() => setIsDarkPreview((value) => !value)}
             >
-              <span className={!isDarkPreview ? styles.modeLabelActive : ""}>浅色</span>
+              <span className={!isDarkPreview ? styles.modeLabelActive : ""}>
+                <span aria-hidden="true">☀️</span> 浅色
+              </span>
               <span className={styles.modeTrack} aria-hidden="true">
                 <span
                   className={`${styles.modeThumb} ${isDarkPreview ? styles.modeThumbDark : ""}`}
                 />
               </span>
-              <span className={isDarkPreview ? styles.modeLabelActive : ""}>深色</span>
+              <span className={isDarkPreview ? styles.modeLabelActive : ""}>
+                <span aria-hidden="true">🌙</span> 深色
+              </span>
             </button>
           </div>
 
@@ -592,7 +650,7 @@ export function PortfolioView() {
             <span className={styles.eyebrow}>功能详解 · 记忆库</span>
           </div>
           <p data-reveal className={styles.memoryInsight}>
-            <span className={styles.geist}>Early user testing insight</span>
+            <span>早期用户测试洞察</span>
             <span className={styles.memoryInsightDivider}>·</span>
             用户认为&ldquo;Memory&rdquo;含义偏技术，更期待 AI 在持续对话中逐渐了解自己。
           </p>

@@ -436,7 +436,6 @@
   padding: 16px 30px;
   border-radius: 999px;
   background: var(--coral);
-  color: #fff;
   font-size: 15px;
   font-weight: 600;
   box-shadow: 0 8px 28px rgba(226, 112, 63, 0.34);
@@ -445,8 +444,15 @@
     box-shadow 0.4s ease;
 }
 
-.heroCtaPrimary:hover {
+/* Specificity bump: the global ".page a" link-color rule (class + type
+   selector) otherwise outranks a single-class rule and was silently
+   dimming this button's text to --accent instead of white. */
+.page .heroCtaPrimary,
+.page .heroCtaPrimary:hover {
   color: #fff;
+}
+
+.heroCtaPrimary:hover {
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 14px 34px rgba(226, 112, 63, 0.42);
 }
@@ -740,9 +746,10 @@
   background: linear-gradient(135deg, rgba(232, 200, 220, 0.7), rgba(250, 232, 242, 0.6));
 }
 
-.featureIconRoundtable {
-  background: linear-gradient(135deg, rgba(240, 168, 138, 0.9), rgba(240, 168, 138, 0.35));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+.featureRoundtable {
+  width: 84px;
+  height: 84px;
+  margin-bottom: 2px;
 }
 
 .featureTitle {
@@ -1718,7 +1725,8 @@
 }
 
 .petTableHead span {
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--ink-faint);
   letter-spacing: 0.04em;
 }
@@ -1737,8 +1745,9 @@
 }
 
 .petRowState {
-  font-size: 16.5px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.4;
 }
 
 .petRowOld {
@@ -1749,9 +1758,10 @@
 }
 
 .petRowComi {
-  font-size: 16.5px;
+  font-size: 17.5px;
   color: #c67750;
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 /* Level 2 — bold coral block, the section's pull-quote */
