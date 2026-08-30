@@ -6,6 +6,7 @@ import { AboutMeGallery } from "./AboutMeGallery";
 import { ChatDemo } from "./ChatDemo";
 import { MascotFace } from "./MascotFace";
 import { PetRotator } from "./PetRotator";
+import { ProductIdentity } from "./ProductIdentity";
 import styles from "./portfolio.module.css";
 
 /**
@@ -389,6 +390,11 @@ export function PortfolioView() {
       </section>
 
       <SeamBand variant={0} prevColor="#fdfaf8" nextColor="#fdfaf8" />
+
+      {/* ── 01b Product Identity ── */}
+      <ProductIdentity />
+
+      <SeamBand variant={1} prevColor="#fdfaf8" nextColor="#fdfaf8" />
 
       {/* ── 02 Why COMI ── */}
       <section id="s2" className={`${styles.section} ${styles.why}`}>

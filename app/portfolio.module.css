@@ -563,6 +563,189 @@
   }
 }
 
+/* ── 01b Product Identity ───────────────────────────── */
+/* Compact bridge between Hero and Why COMI: icon → home screen →
+   launch screen, told as "recognize the entry point, then open it".
+   Cream/warm-white ground, restrained pudding-yellow + strawberry-pink
+   ambient glow only — no new gradients, no dark tech styling. */
+
+.identity {
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.identity::before {
+  content: "";
+  position: absolute;
+  inset: -10% -10% auto auto;
+  width: 46%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(255, 214, 140, 0.16) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.identity::after {
+  content: "";
+  position: absolute;
+  inset: auto auto -14% -8%;
+  width: 40%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(242, 165, 190, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.identityInner {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.identityTitle {
+  margin: 14px 0 0;
+}
+
+.identityBody {
+  margin: 18px 0 0;
+  max-width: 34em;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+.identityGrid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  grid-template-areas: "launch logo" "launch home";
+  gap: clamp(18px, 2.4vw, 28px);
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
+.identityCard {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: clamp(24px, 3vw, 36px);
+  background: #fffdf8;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 22px 48px rgba(81, 58, 48, 0.15),
+    0 6px 16px rgba(200, 150, 130, 0.1),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+.identityCardLaunch {
+  grid-area: launch;
+  /* No aspect-ratio here on purpose: the grid stretches this card to
+     match the combined height of the logo+home stack beside it, and
+     object-fit: cover on its image absorbs the small height delta —
+     the alternative (a fixed aspect-ratio) leaves a gap under the
+     shorter column instead. */
+  min-height: 100%;
+}
+
+@media (max-width: 860px) {
+  .identityCardLaunch {
+    aspect-ratio: 1111 / 1416;
+    min-height: 0;
+  }
+}
+
+.identityLogoCard {
+  grid-area: logo;
+}
+
+.identityHomeCard {
+  grid-area: home;
+  aspect-ratio: 1254 / 1254;
+}
+
+.identityImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.identityLogoImgWrap {
+  aspect-ratio: 1232 / 1254;
+  padding: clamp(10px, 1.6vw, 18px);
+}
+
+.identityLogoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* One restrained glow pulse, played once when the card first enters
+   view (IntersectionObserver removes .hidden — see PortfolioView).
+   Targets filter/box-shadow only so it never fights the shared
+   opacity+translateY reveal transition running on the same element. */
+.identityLogoCard:not(.hidden) {
+  animation: identityLogoShine 1.4s cubic-bezier(0.4, 0, 0.2, 1) 1 both;
+}
+
+@keyframes identityLogoShine {
+  0% {
+    filter: brightness(1);
+    box-shadow:
+      0 22px 48px rgba(81, 58, 48, 0.15),
+      0 6px 16px rgba(200, 150, 130, 0.1),
+      inset 0 0 0 4px rgba(255, 255, 255, 0.4);
+  }
+  45% {
+    filter: brightness(1.06);
+    box-shadow:
+      0 22px 48px rgba(81, 58, 48, 0.15),
+      0 6px 16px rgba(200, 150, 130, 0.1),
+      inset 0 0 0 4px rgba(255, 255, 255, 0.4),
+      0 0 32px 4px rgba(255, 214, 140, 0.32);
+  }
+  100% {
+    filter: brightness(1);
+    box-shadow:
+      0 22px 48px rgba(81, 58, 48, 0.15),
+      0 6px 16px rgba(200, 150, 130, 0.1),
+      inset 0 0 0 4px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.identityCaption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.94);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink-mute);
+}
+
+@media (max-width: 860px) {
+  .identityGrid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "logo" "home" "launch";
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 32px;
+  }
+
+  .identityCaption {
+    position: static;
+    display: inline-block;
+    margin-top: 10px;
+    background: transparent;
+    padding: 0;
+    color: var(--ink-ghost);
+  }
+}
+
 /* ── 02 Why COMI ────────────────────────────────────── */
 
 .why {
