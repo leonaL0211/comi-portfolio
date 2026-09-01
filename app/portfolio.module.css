@@ -844,6 +844,49 @@
   }
 }
 
+/* ── 02b Product evolution ──────────────────────────── */
+/* Deliberately reuses .memoryPoint (numbered rows), .decisionCompare
+   (before/after pairs) and .principleBox (closing pull-quote) rather than
+   introducing a new visual language for a single section. */
+
+.evolution {
+  background: linear-gradient(180deg, #faf4f2 0%, #fdfaf8 100%);
+}
+
+.evolutionInner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.evolutionMapRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(167, 156, 151, 0.18);
+}
+
+.evolutionMapRow:last-child {
+  border-bottom: none;
+}
+
+.evolutionMapSide {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.evolutionMapZh {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.evolutionMapArrow {
+  color: var(--ink-ghost);
+  font-size: 15px;
+  flex: 0 0 auto;
+}
+
 /* ── 03 Features ────────────────────────────────────── */
 
 .features {
@@ -995,6 +1038,45 @@
 .featureTagPillAccent {
   background: rgba(240, 168, 138, 0.22);
   color: #f0a88a;
+}
+
+/* Implementation-status pills — Implemented / Designed / Exploration must
+   stay visually distinct so the copy never implies a shipped feature that
+   isn't. */
+.featureTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.statusPillMvp {
+  background: rgba(232, 155, 123, 0.16);
+  color: #c67750;
+}
+
+.statusPillDesigned {
+  background: rgba(167, 156, 151, 0.16);
+  color: var(--ink-mute);
+}
+
+.statusPillExploration {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d6ccc6;
+  border: 1px dashed rgba(214, 204, 198, 0.4);
 }
 
 /* ── 03b Product interface showcase ────────────────── */
@@ -2396,6 +2478,28 @@
   box-shadow: 0 8px 28px rgba(226, 112, 63, 0.32);
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+/* Closing capstone — the one line the whole page should leave behind. */
+.closingStatement {
+  margin: 56px auto 0;
+  max-width: 640px;
+  text-align: center;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.closingStatementSub {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.52em;
+  font-weight: 500;
+  color: var(--ink-mute);
+  letter-spacing: 0;
 }
 
 .aboutFooter {

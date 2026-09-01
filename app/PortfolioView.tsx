@@ -26,6 +26,7 @@ import styles from "./portfolio.module.css";
 
 const NAV_LINKS = [
   { href: "#s2", label: "为什么" },
+  { href: "#s2b", label: "产品演进" },
   { href: "#s3", label: "功能" },
   { href: "#s4", label: "桌面陪伴" },
   { href: "#s3b", label: "界面" },
@@ -34,7 +35,20 @@ const NAV_LINKS = [
   { href: "#s6", label: "工具链" },
 ];
 
-const DOT_SECTIONS = ["s1", "s2", "s3", "s4", "s3b", "s3c", "s5", "s6", "s7"];
+const DOT_SECTIONS = ["s1", "s2", "s2b", "s3", "s4", "s3b", "s3c", "s5", "s6", "s7"];
+
+// Product Evolution — MVP → Exploration reframing. Each pair is written as
+// a shift the product made, not a feature claim.
+const EVOLUTION_SHIFTS = [
+  { before: "Memory Storage", beforeZh: "记忆存储", after: "Context Ownership", afterZh: "上下文所有权" },
+  { before: "Manual Management", beforeZh: "主动管理", after: "Ambient Understanding", afterZh: "持续理解" },
+  {
+    before: "Single-model Memory",
+    beforeZh: "单模型记忆",
+    after: "Model-independent Context",
+    afterZh: "独立于模型的个人上下文",
+  },
+];
 
 const PRODUCT_SCREENS = [
   {
@@ -419,7 +433,7 @@ export function PortfolioView() {
               </div>
               <div data-reveal data-dir="right" className={styles.whyCard}>
                 <p>
-                  我开始意识到，这不只是&ldquo;切换模型麻烦&rdquo;。项目协作可以靠总结文本传递，但&ldquo;我是谁、习惯怎么沟通、最近在做什么&rdquo;，还是被分散存在不同模型里——问题不是聊天窗口不够好，而是我的上下文，从来没有独立存在过。
+                  我开始意识到，这不只是&ldquo;切换模型麻烦&rdquo;。项目协作可以靠总结文本传递，但&ldquo;我是谁、习惯怎么沟通、最近在做什么&rdquo;，还是被分散存在不同模型里——问题不是模型不够聪明，而是我的个人上下文，从来没有独立于某一个模型存在过。
                 </p>
               </div>
               <div data-reveal className={`${styles.whyCard} ${styles.whyCardHighlight}`}>
@@ -433,47 +447,126 @@ export function PortfolioView() {
 
       <SeamBand variant={1} prevColor="#faf4f2" nextColor="#faf4f2" />
 
+      {/* ── 02b Product evolution ── */}
+      <section id="s2b" className={`${styles.section} ${styles.evolution}`}>
+        <div className={styles.evolutionInner}>
+          <div className={styles.sectionHead}>
+            <h2 data-reveal className={styles.sectionTitle}>
+              从&ldquo;建立记忆库&rdquo;，到&ldquo;让个人上下文跟着用户走&rdquo;
+            </h2>
+            <span className={styles.eyebrow}>PRODUCT EVOLUTION · 产品演进</span>
+          </div>
+          <p data-reveal className={styles.productIntro}>
+            这不是被某个竞品逼出来的调整，而是我在长期同时使用多个模型之后，主动重新评估了一次&ldquo;记忆&rdquo;这件事的差异化空间。
+          </p>
+
+          <div data-reveal className={styles.memoryPointsRow}>
+            <div className={styles.memoryPoint}>
+              <span className={`${styles.geist} ${styles.memoryPointNo}`}>01</span>
+              <div>
+                <h4>行业能力变化</h4>
+                <p>主流 AI 产品都在逐步补齐长期记忆能力——&ldquo;AI 能否记住用户&rdquo;正在从一项差异化优势，变成一项基础能力。</p>
+              </div>
+            </div>
+            <div className={styles.memoryPoint}>
+              <span className={`${styles.geist} ${styles.memoryPointNo}`}>02</span>
+              <div>
+                <h4>我重新评估差异化</h4>
+                <p>
+                  当&ldquo;记得住&rdquo;本身不再稀缺，真正的问题浮现出来：不同模型仍然分别认识不同版本的用户，切换模型时，背景、偏好、正在做的项目依然会割裂。
+                </p>
+              </div>
+            </div>
+            <div className={styles.memoryPoint}>
+              <span className={`${styles.geist} ${styles.memoryPointNo}`}>03</span>
+              <div>
+                <h4>产品问题重定义</h4>
+                <p>
+                  我把 COMI 的核心方向从 Memory Storage 转向 Shared Personal Context——关注点从&ldquo;记不记得住&rdquo;，变成&ldquo;这份理解归谁所有、能不能带着走&rdquo;。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal className={styles.decisionCompare} style={{ marginTop: 40 }}>
+            {EVOLUTION_SHIFTS.map((shift) => (
+              <div key={shift.before} className={styles.evolutionMapRow}>
+                <span className={styles.evolutionMapSide}>
+                  <span className={`${styles.geist} ${styles.compareBefore}`}>{shift.before}</span>
+                  <span className={styles.evolutionMapZh}>{shift.beforeZh}</span>
+                </span>
+                <span className={styles.evolutionMapArrow}>→</span>
+                <span className={styles.evolutionMapSide}>
+                  <span className={`${styles.geist} ${styles.compareAfter}`}>{shift.after}</span>
+                  <span className={styles.evolutionMapZh}>{shift.afterZh}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div data-reveal className={styles.principleBox} style={{ marginTop: 40 }}>
+            <div className={styles.principleLabel}>核心原则</div>
+            <p className={styles.principleText}>
+              Memory should travel with the user, not stay with the model.
+              <br />
+              记忆应该跟着用户走，而不是留在某一个模型里。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <SeamBand variant={2} prevColor="#fdfaf8" nextColor="#faf4f2" />
+
       {/* ── 03 Core features ── */}
       <section id="s3" className={`${styles.section} ${styles.features}`}>
         <div className={styles.featuresInner}>
           <div className={styles.sectionHead}>
             <h2 data-reveal className={styles.sectionTitle}>
-              三个功能，一个关于陪伴的答案
+              两个已上线的理解能力，一个跨模型的探索方向
             </h2>
             <span className={styles.eyebrow}>核心功能</span>
           </div>
           <p data-reveal className={styles.productIntro}>
-            真正的陪伴，是每次回来，都能接着上次继续。
+            真正的陪伴，是每次回来，都能接着上次继续。01、02 已经在产品里运行；03 是让个人上下文真正跨模型延续的探索方向。
           </p>
           <div className={styles.featureGrid}>
             <div data-reveal className={styles.featureCard}>
               <div className={styles.featureIcon} />
-              <h3 className={styles.featureTitle}>记忆库</h3>
+              <div className={styles.featureTitleRow}>
+                <h3 className={styles.featureTitle}>01 About Me · 关于我</h3>
+                <span className={`${styles.geist} ${styles.statusPill} ${styles.statusPillMvp}`}>Implemented</span>
+              </div>
               <p className={styles.featureDesc}>
-                让 AI 记得你说过的每一件重要的事。不是关键词匹配，是长程的、结构化的、可以被你自己管理的记忆。
+                COMI 持续理解你的个人上下文——不是关键词匹配，是结构化、可编辑、始终由你掌控的理解。
               </p>
             </div>
             <div data-reveal className={styles.featureCard}>
               <div className={`${styles.featureIcon} ${styles.featureIconFiles}`} />
-              <h3 className={styles.featureTitle}>文件库</h3>
+              <div className={styles.featureTitleRow}>
+                <h3 className={styles.featureTitle}>02 File Context · 文件库</h3>
+                <span className={`${styles.geist} ${styles.statusPill} ${styles.statusPillDesigned}`}>Designed</span>
+              </div>
               <p className={styles.featureDesc}>
-                共同经历的沉淀空间。你分享过的资料、创作、灵感，都会成为 AI 理解你的一部分。
+                共同经历的沉淀空间：设计方向是让你分享过的资料、创作、灵感，逐步纳入 AI 对你的理解。目前完成产品设计，尚未在正式版本上线。
               </p>
             </div>
             <div data-reveal className={`${styles.featureCard} ${styles.featureCardDark}`}>
               <RoundtableDiagram className={styles.featureRoundtable} />
-              <h3 className={styles.featureTitle}>
-                LLM 圆桌 <span className={`${styles.geist} ${styles.featureVersion}`}>1.0</span>
-              </h3>
+              <div className={styles.featureTitleRow}>
+                <h3 className={styles.featureTitle}>03 Shared Context · 共享上下文</h3>
+                <span className={`${styles.geist} ${styles.statusPill} ${styles.statusPillExploration}`}>
+                  Exploration
+                </span>
+              </div>
               <p className={styles.featureDesc}>
-                一份记忆，多个模型共享。你可以随时切换和不同 AI
-                对话，但每个 AI 都记得你完整的故事——就像你有几个懂你的朋友，选择今天想找谁说话，但不需要重新自我介绍。
+                Shared Personal Context 成立后的应用探索之一：同一份个人上下文，被不同模型共享，切换 AI
+                对话时不需要重新自我介绍。目前是产品方向，尚未实现跨模型同步。
               </p>
               <div className={styles.featureTagRow}>
                 <span className={`${styles.geist} ${styles.featureTagPill}`}>Claude</span>
                 <span className={`${styles.geist} ${styles.featureTagPill}`}>GPT</span>
                 <span className={`${styles.geist} ${styles.featureTagPill}`}>Gemini</span>
-                <span className={styles.featureTagPillAccent}>同一份记忆</span>
+                <span className={styles.featureTagPillAccent}>Future Applications</span>
               </div>
             </div>
           </div>
@@ -490,7 +583,7 @@ export function PortfolioView() {
             <h2 data-reveal className={`${styles.sectionTitle} ${styles.petLeadTitle}`}>
               让 AI 的存在，成为一种<span className={styles.accentText}>视觉上的陪伴</span>
             </h2>
-            <span className={styles.eyebrow}>桌面陪伴形态</span>
+            <span className={styles.eyebrow}>桌面陪伴形态 · Experience Exploration</span>
           </div>
           <p data-reveal className={styles.petIntro}>
             基于开源项目 <span className={styles.geist}>Clawd on desk</span>{" "}
@@ -665,6 +758,9 @@ export function PortfolioView() {
             把它重新设计成&ldquo;关于我&rdquo;：不是一个需要你主动填写的资料页，而是 COMI
             在长期对话里，对你慢慢形成的理解。
           </p>
+          <p data-reveal className={styles.productIntro}>
+            从&ldquo;管理记忆&rdquo;，到&ldquo;感受被理解&rdquo;——<span className={styles.accentText}>AI 可以形成理解，但不能替用户定义自己</span>。
+          </p>
 
           <div data-reveal className={styles.memoryPointsRow}>
             <div className={styles.memoryPoint}>
@@ -816,6 +912,9 @@ export function PortfolioView() {
               <p data-reveal className={styles.aboutBioStrong}>
                 COMI 是我第一个从 0 到 1 的 AI 产品，也是我理解&ldquo;AI 与人的关系&rdquo;的一次完整实验。
               </p>
+              <p data-reveal className={styles.aboutBioStrong}>
+                COMI 从&ldquo;怎样让 AI 更会记忆&rdquo;，逐渐转向&ldquo;怎样让用户拥有一份不依赖单一模型的个人上下文&rdquo;。
+              </p>
               <div className={styles.aboutContacts}>
                 <a href="tel:17623068416" className={`${styles.geist} ${styles.contactLink}`}>
                   176 2306 8416
@@ -837,6 +936,11 @@ export function PortfolioView() {
               </div>
             </div>
           </div>
+
+          <p data-reveal className={styles.closingStatement}>
+            The model can change. The understanding shouldn&rsquo;t.
+            <span className={styles.closingStatementSub}>模型可以改变，对你的理解不应该从零开始。</span>
+          </p>
 
           <div className={styles.aboutFooter}>
             <span>开源致谢 · Clawd on desk</span>
