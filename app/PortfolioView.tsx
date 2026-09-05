@@ -102,6 +102,42 @@ const STACK = [
   { name: "Codex", desc: "demo 制作 · 视频演示辅助" },
 ];
 
+// Core-features cards (Figma: COMI_P04_Features, node 12:2). "关于我" in
+// the source design is rendered as "关于你" to match the rename already
+// applied throughout the memory-feature deep dive and validation section
+// (see s3c / s6b) — kept consistent rather than reintroducing the name
+// collision with the nav's author-intro link that prompted that rename.
+const CORE_FEATURES = [
+  {
+    no: "01",
+    status: "implemented" as const,
+    icon: "notes" as const,
+    title: "About Me",
+    titleZh: "关于你",
+    body: "COMI 从持续对话中沉淀值得长期保留的信息，并逐渐形成一份关于用户的动态理解。用户首先感知到的不是“系统存了什么字段”，而是“COMI 现在怎样理解我”。",
+    chips: ["基本信息", "偏好与习惯", "长期目标", "最近在做"],
+  },
+  {
+    no: "02",
+    status: "implemented" as const,
+    icon: "folder" as const,
+    title: "File Context",
+    body: "将用户分享过的资料、作品与项目文件纳入长期上下文，让 AI 理解的不只是单次聊天，也包括持续协作中的共同信息。",
+    note: "一份记忆，多模型共享——已在 Claude / GPT / Gemini 间落地",
+    chips: ["资料", "创作", "灵感"],
+  },
+  {
+    no: "03",
+    status: "exploration" as const,
+    icon: "roundtable" as const,
+    dark: true,
+    title: "Shared Context",
+    body: "在同一份 Personal Context 基础上，不同模型可以继续理解同一个用户。跨模型切换、LLM Roundtable 等能力将作为 Shared Context 成立后的下一阶段探索。",
+    chips: ["Claude", "GPT", "Gemini"],
+    accentChip: "Future Applications",
+  },
+];
+
 // ── Validation section content ──────────────────────────────────
 // Kept data-driven so metrics / findings / evidence can be edited or
 // re-ordered without touching markup.
@@ -379,6 +415,31 @@ function RoundtableDiagram({ className }: { className?: string }) {
   );
 }
 
+/** Small "notes" glyph for the About You feature card — three list lines. */
+function NotesIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 7h14" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" />
+      <path d="M5 12h14" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" />
+      <path d="M5 17h9" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Small open-folder glyph for the File Context feature card. */
+function FolderIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4 6.5a1.5 1.5 0 0 1 1.5-1.5h4l1.7 2H18.5A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5v-11Z"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 /**
  * Social-proof screenshot slot for the Validation section's "public
  * interest signal" column. Reserves its aspect ratio up front (no
@@ -571,44 +632,65 @@ export function PortfolioView() {
         <div className={styles.featuresInner}>
           <div className={styles.sectionHead}>
             <h2 data-reveal className={styles.sectionTitle}>
-              三个功能，一个关于陪伴的答案
+              已实现 ×2，已设计 ×1——一套让记忆独立于模型的系统
             </h2>
-            <span className={styles.eyebrow}>核心功能</span>
+            <span className={`${styles.eyebrow} ${styles.featuresEyebrow}`}>
+              CORE FEATURES · 核心功能
+            </span>
           </div>
           <p data-reveal className={styles.productIntro}>
-            真正的陪伴，是每次回来，都能接着上次继续。
+            真正的陪伴，是每次回来，都能接着上次继续。01 已在产品中运行，02 完成产品设计，03
+            是让个人上下文跨模型延续的探索方向。
           </p>
           <div className={styles.featureGrid}>
-            <div data-reveal className={styles.featureCard}>
-              <div className={styles.featureIcon} />
-              <h3 className={styles.featureTitle}>记忆库</h3>
-              <p className={styles.featureDesc}>
-                让 AI 记得你说过的每一件重要的事。不是关键词匹配，是长程的、结构化的、可以被你自己管理的记忆。
-              </p>
-            </div>
-            <div data-reveal className={styles.featureCard}>
-              <div className={`${styles.featureIcon} ${styles.featureIconFiles}`} />
-              <h3 className={styles.featureTitle}>文件库</h3>
-              <p className={styles.featureDesc}>
-                共同经历的沉淀空间。你分享过的资料、创作、灵感，都会成为 AI 理解你的一部分。
-              </p>
-            </div>
-            <div data-reveal className={`${styles.featureCard} ${styles.featureCardDark}`}>
-              <RoundtableDiagram className={styles.featureRoundtable} />
-              <h3 className={styles.featureTitle}>
-                LLM 圆桌 <span className={`${styles.geist} ${styles.featureVersion}`}>1.0</span>
-              </h3>
-              <p className={styles.featureDesc}>
-                一份记忆，多个模型共享。你可以随时切换和不同 AI
-                对话，但每个 AI 都记得你完整的故事——就像你有几个懂你的朋友，选择今天想找谁说话，但不需要重新自我介绍。
-              </p>
-              <div className={styles.featureTagRow}>
-                <span className={`${styles.geist} ${styles.featureTagPill}`}>Claude</span>
-                <span className={`${styles.geist} ${styles.featureTagPill}`}>GPT</span>
-                <span className={`${styles.geist} ${styles.featureTagPill}`}>Gemini</span>
-                <span className={styles.featureTagPillAccent}>同一份记忆</span>
+            {CORE_FEATURES.map((f) => (
+              <div
+                key={f.no}
+                data-reveal
+                className={`${styles.featureCard} ${f.dark ? styles.featureCardDark : ""}`}
+              >
+                <div className={styles.featureCardTop}>
+                  {f.icon === "roundtable" ? (
+                    <RoundtableDiagram className={styles.featureRoundtable} />
+                  ) : (
+                    <div
+                      className={`${styles.featureIconCircle} ${
+                        f.icon === "folder" ? styles.featureIconCircleBlue : ""
+                      }`}
+                    >
+                      {f.icon === "notes" ? (
+                        <NotesIcon className={styles.featureIconGlyph} />
+                      ) : (
+                        <FolderIcon className={styles.featureIconGlyph} />
+                      )}
+                    </div>
+                  )}
+                  <span
+                    className={`${styles.geist} ${styles.statusPill} ${
+                      f.status === "exploration" ? styles.statusPillExploration : ""
+                    }`}
+                  >
+                    {f.status === "implemented" ? "IMPLEMENTED" : "EXPLORATION"}
+                  </span>
+                </div>
+                <h3 className={styles.featureTitle}>
+                  {f.no} {f.title}
+                  {f.titleZh ? <> · {f.titleZh}</> : null}
+                </h3>
+                <p className={styles.featureDesc}>{f.body}</p>
+                {f.note ? <p className={styles.featureNote}>{f.note}</p> : null}
+                <div className={styles.featureTagRow}>
+                  {f.chips.map((chip) => (
+                    <span key={chip} className={`${styles.geist} ${styles.featureTagPill}`}>
+                      {chip}
+                    </span>
+                  ))}
+                  {f.accentChip ? (
+                    <span className={styles.featureTagPillAccent}>{f.accentChip}</span>
+                  ) : null}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
