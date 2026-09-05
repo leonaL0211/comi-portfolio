@@ -33,7 +33,7 @@ const NAV_LINKS = [
   { href: "#s6", label: "工具链" },
 ];
 
-const DOT_SECTIONS = ["s1", "s2", "s3", "s4", "s3b", "s3c", "s5", "s6", "s7"];
+const DOT_SECTIONS = ["s1", "s2", "s3", "s4", "s3b", "s3c", "s5", "s5b", "s6", "s7"];
 
 const PRODUCT_SCREENS = [
   {
@@ -645,7 +645,7 @@ export function PortfolioView() {
         <div className={styles.memoryDeepDiveInner}>
           <div className={styles.sectionHead}>
             <h2 data-reveal className={styles.sectionTitle}>
-              从&ldquo;Memory&rdquo;到&ldquo;关于我&rdquo;
+              从&ldquo;Memory&rdquo;到&ldquo;关于你&rdquo;
             </h2>
             <span className={styles.eyebrow}>功能详解 · 记忆库</span>
           </div>
@@ -656,7 +656,7 @@ export function PortfolioView() {
           </p>
           <p data-reveal className={styles.productIntro}>
             记忆库最早的界面直接叫 Memory——技术上准确，但读起来像在管理一个数据库。COMI
-            把它重新设计成&ldquo;关于我&rdquo;：不是一个需要你主动填写的资料页，而是 COMI
+            把它重新设计成&ldquo;关于你&rdquo;：不是一个需要你主动填写的资料页，而是 COMI
             在长期对话里，对你慢慢形成的理解。
           </p>
 
@@ -756,7 +756,73 @@ export function PortfolioView() {
         </div>
       </section>
 
-      <SeamBand variant={1} prevColor="#1f1916" nextColor="#faf4f2" />
+      <SeamBand variant={1} prevColor="#1f1916" nextColor="#fdfaf8" />
+
+      {/* ── 05b Validation ── */}
+      <section id="s5b" className={`${styles.section} ${styles.validation}`}>
+        <div className={styles.validationInner}>
+          <div className={styles.sectionHead}>
+            <h2 data-reveal className={styles.sectionTitle}>
+              产品之外的真实反馈
+            </h2>
+            <span className={styles.eyebrow}>VALIDATION · 外部兴趣与体验验证</span>
+          </div>
+
+          <div className={styles.validationStats}>
+            <div data-reveal className={`${styles.statCard} ${styles.statCardBig}`}>
+              <span className={`${styles.geist} ${styles.statNumber}`}>25</span>
+              <span className={styles.statLabel}>条主动私信</span>
+            </div>
+            <div data-reveal className={styles.statCard}>
+              <span className={`${styles.geist} ${styles.statNumber}`}>340+</span>
+              <span className={styles.statLabel}>点赞</span>
+            </div>
+            <div data-reveal className={styles.statCard}>
+              <span className={`${styles.geist} ${styles.statNumber}`}>120+</span>
+              <span className={styles.statLabel}>收藏</span>
+            </div>
+          </div>
+
+          <p data-reveal className={styles.validationIntro}>
+            COMI 相关内容公开分享后获得持续互动，其中 25
+            位用户主动私信询问前端构建方式——不是靠推广换来的关注，而是产品概念本身带来的一层真实外部兴趣信号。
+          </p>
+
+          <p data-reveal className={styles.validationInsight}>
+            <span className={styles.validationInsightLabel}>Key Insight</span>
+            用户对&ldquo;跨模型记忆延续&rdquo;的价值有明确感知，但也点出&ldquo;关于我&rdquo;存在主体歧义——这直接推动了&ldquo;关于我→关于你&rdquo;的重命名，以及保留对话纠错与手动编辑双路径的设计。
+          </p>
+
+          <div data-reveal className={styles.validationShots}>
+            <figure className={styles.validationShot}>
+              <div className={styles.memoryCardFrame}>
+                <img
+                  src="/images/2.png"
+                  alt="COMI 关于你卡片中的&ldquo;最近在做&rdquo;记忆：记录用户正在筹备的短剧项目"
+                />
+              </div>
+              <figcaption className={styles.memoryCaption}>
+                <strong>记忆库 · 已知</strong>
+                <span>此前对话里说过的项目背景，被沉淀为一条长期记忆</span>
+              </figcaption>
+            </figure>
+            <figure className={styles.validationShot}>
+              <div className={styles.memoryCardFrame}>
+                <img
+                  src="/images/1.png"
+                  alt="全新聊天窗口零上下文时，COMI 调用记忆库准确回忆项目背景，并诚实说明尚未掌握的最新进展"
+                />
+              </div>
+              <figcaption className={styles.memoryCaption}>
+                <strong>新窗口 · 零上文</strong>
+                <span>跨模型调用记忆库作答，且诚实区分&ldquo;已知&rdquo;与&ldquo;未知&rdquo;</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <SeamBand variant={0} prevColor="#fdfaf8" nextColor="#faf4f2" />
 
       {/* ── 06 Tech stack ── */}
       <section id="s6" className={`${styles.section} ${styles.stack}`}>

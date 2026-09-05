@@ -4,7 +4,7 @@ import styles from "./portfolio.module.css";
 import { AboutMeShowcase } from "./AboutMeShowcase";
 
 /**
- * Full "关于我" gallery for the memory-feature deep dive: three
+ * Full "关于你" gallery for the memory-feature deep dive: three
  * roughly-equal columns, left to right — main page (scrollable) / empty
  * state / edit state + chat toast stacked together — mirroring the
  * phoneFrame sizing and card-tilt language already used by the
@@ -20,7 +20,7 @@ export function AboutMeGallery({ dark }: { dark: boolean }) {
         <AboutMeShowcase dark={dark} frameClassName={styles.memoryEqualFrame} />
         <figcaption className={styles.memoryCaption}>
           <span className={styles.memoryCaptionStep}>01 · 进入</span>
-          <strong>关于我 · 主页</strong>
+          <strong>关于你 · 主页</strong>
           <span>四类记忆一次看全，用右下角按钮翻看完整卡片</span>
         </figcaption>
       </figure>
@@ -29,7 +29,7 @@ export function AboutMeGallery({ dark }: { dark: boolean }) {
         <div className={`${styles.phoneFrame} ${styles.memoryEqualFrame}`}>
           <img
             src={dark ? "/images/app-aboutme-empty-dark.png" : "/images/app-aboutme-empty-light.png"}
-            alt="COMI 关于我空状态：中央写着'我们还在慢慢认识'，配一个 COMI 小角色"
+            alt="COMI 关于你空状态：中央写着'我们还在慢慢认识'，配一个 COMI 小角色"
             className={styles.aboutMeImg}
           />
         </div>
@@ -45,7 +45,7 @@ export function AboutMeGallery({ dark }: { dark: boolean }) {
           <div className={styles.memoryCardFrame}>
             <img
               src={dark ? "/images/app-aboutme-edit-dark.png" : "/images/app-aboutme-edit-light.png"}
-              alt="COMI 关于我编辑状态：卡片原地展开为可编辑文本框，底部是取消与保存按钮"
+              alt="COMI 关于你编辑状态：卡片原地展开为可编辑文本框，底部是取消与保存按钮"
             />
           </div>
           <figcaption className={styles.memoryCaption}>
