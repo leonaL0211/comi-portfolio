@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AboutMeGallery } from "./AboutMeGallery";
 import { ChatDemo } from "./ChatDemo";
@@ -31,9 +31,10 @@ const NAV_LINKS = [
   { href: "#s3c", label: "记忆库" },
   { href: "#s5", label: "决策日志" },
   { href: "#s6", label: "工具链" },
+  { href: "#s6b", label: "用户验证" },
 ];
 
-const DOT_SECTIONS = ["s1", "s2", "s3", "s4", "s3b", "s3c", "s5", "s5b", "s6", "s7"];
+const DOT_SECTIONS = ["s1", "s2", "s3", "s4", "s3b", "s3c", "s5", "s6", "s6b", "s7"];
 
 const PRODUCT_SCREENS = [
   {
@@ -100,6 +101,121 @@ const STACK = [
   { name: "Clawd on desk", desc: "开源 · 桌面陪伴形态基础" },
   { name: "Codex", desc: "demo 制作 · 视频演示辅助" },
 ];
+
+// ── Validation section content ──────────────────────────────────
+// Kept data-driven so metrics / findings / evidence can be edited or
+// re-ordered without touching markup.
+
+const PUBLIC_METRICS = [
+  { value: "25", label: "Inbound DMs · 主动私信" },
+  { value: "340+", label: "Likes · 点赞" },
+  { value: "120+", label: "Saves · 收藏" },
+];
+
+// Social-feedback screenshot slots. Drop a same-named file into
+// /public/images to replace a placeholder — no code change needed.
+const PUBLIC_SHOTS = [
+  { id: "validation-public-01", alt: "小红书用户对 COMI 的兴趣留言截图 1" },
+  { id: "validation-public-02", alt: "小红书用户对 COMI 的兴趣留言截图 2" },
+];
+
+const TEST_PARTICIPANT_MIX = ["Heavy AI User × 2", "New User × 1", "Casual User × 1"];
+
+const INTRO_FINDINGS = [
+  {
+    label: "Observed Friction · 需要解释的功能",
+    body: '"关于我"存在触达成本；记忆删除路径不够统一；复杂信息结构会增加理解负担。',
+  },
+  {
+    label: "Key Insight · 关键结论",
+    body: "用户真正关心的不是“有多少功能”，而是上下文是否连续、记忆是否可信，以及 AI 是否真正理解自己。",
+  },
+  {
+    label: "Design Response · 产品回应",
+    body: "将 About You / 关于你与主动记忆机制，从“功能展示”重新组织为围绕长期理解和上下文连续性的体验系统；Shared Context 作为下一步方向，优先验证要共享的 Context 粒度。",
+  },
+];
+
+const RESEARCH_PARTICIPANTS = [
+  { code: "P1", desc: "重度陪伴 + 工作" },
+  { code: "P2", desc: "AI 新用户" },
+  { code: "P3", desc: "轻度聊天" },
+  { code: "P4", desc: "重度多模型生产力" },
+];
+
+const TASK_FLOW = [
+  { en: "First Impression", zh: "首次理解" },
+  { en: "About You", zh: "AI 如何理解我" },
+  { en: "Memory Control", zh: "记住了什么" },
+  { en: "Shared Context", zh: "模型间共享什么" },
+  { en: "Priority", zh: "最想留下什么" },
+];
+
+// Evidence screenshots are real crops from actual test-participant chat
+// logs (WeChat, 2026-09-05/06) — cropped to the relevant message only,
+// not staged or fabricated.
+const EVIDENCE = [
+  {
+    code: "A",
+    label: "EVIDENCE A · MEMORY CONTROL",
+    img: "/images/validation-evidence-memory.jpg",
+    alt: "参与者聊天记录：说明发现记忆有误时，会直接告诉 AI 重新记一次，或去记忆库里手动改",
+    body: "用户会主动检查、修改甚至删除 AI 对自己的记忆，因此“可见、可控、可修正”本身就是信任的一部分。",
+  },
+  {
+    code: "B",
+    label: "EVIDENCE B · SHARED CONTEXT",
+    img: "/images/validation-evidence-context.jpg",
+    alt: "参与者聊天记录：说明换模型时只希望带走最终结论和大纲，不需要搬运完整的修改过程",
+    body: "用户期待跨模型的不是机械复制完整聊天记录，而是模型能够延续对当前任务和个人背景的理解。",
+  },
+  {
+    code: "C",
+    label: "EVIDENCE C · COMPANION EXPERIENCE",
+    img: "/images/validation-evidence-companion.jpg",
+    alt: "参与者聊天记录：说明喜欢 AI 发表情包、不说长句子，这些细节让对话更像和真人聊天",
+    body: "陪伴感并不只来自长篇回复。表情包、语气、微小回应方式等细节也会显著影响用户是否觉得“这个 AI 懂我”。",
+  },
+];
+
+const SYNTHESIS = [
+  {
+    no: "01",
+    title: "Context should be compressed, not copied",
+    body: "不同模型之间需要延续“理解”，而不是原样搬运完整聊天历史。",
+  },
+  {
+    no: "02",
+    title: "Memory is both continuity and self-reflection",
+    body: "记忆既帮助 AI 保持连续性，也让用户重新看到“AI 如何理解我”。",
+  },
+  {
+    no: "03",
+    title: "Correction needs two paths",
+    body: "用户既需要直接进入 About You / 记忆库修改，也需要在对话中即时纠正 AI。",
+  },
+  {
+    no: "04",
+    title: "Companionship comes from small interaction details",
+    body: "表情包、语气和轻量反馈等细节，会明显改变陪伴感与产品人格感知。",
+  },
+];
+
+const DESIGN_RESPONSE = {
+  implemented: [
+    '「关于我」入口 →「关于你」',
+    "About You / 记忆相关入口重新组织",
+    "主动记忆机制",
+    "Memory 已实现基础可编辑 / 删除",
+    "Sticker / COMI on Desk 等轻陪伴互动探索",
+  ],
+  next: [
+    "Shared Context 优先验证 Goal / Key Decisions / Current State",
+    "进一步验证用户希望跨模型共享的 Context 粒度",
+    "优化记忆修正入口与交互反馈",
+    "继续验证长期记忆与陪伴体验之间的关系",
+  ],
+};
 
 // Three irregular wave paths (viewBox 0 0 1200 64) — deliberately
 // non-periodic amplitudes/spacing so the seam reads as hand-drawn
@@ -260,6 +376,29 @@ function RoundtableDiagram({ className }: { className?: string }) {
         strokeWidth={1.5}
       />
     </svg>
+  );
+}
+
+/**
+ * Social-proof screenshot slot for the Validation section's "public
+ * interest signal" column. Reserves its aspect ratio up front (no
+ * layout shift either way) and falls back to a labeled placeholder —
+ * naming the exact asset id to drop in — if `/images/{id}.jpg` hasn't
+ * been supplied yet, instead of showing a broken-image icon.
+ */
+function ShotSlot({ id, alt }: { id: string; alt: string }) {
+  const [failed, setFailed] = useState(false);
+  return (
+    <div className={styles.shotFrame}>
+      {!failed ? (
+        <img src={`/images/${id}.jpg`} alt={alt} onError={() => setFailed(true)} />
+      ) : (
+        <div className={styles.shotPlaceholder}>
+          小红书反馈截图待补充
+          <span className={`${styles.geist}`}>{id}</span>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -581,6 +720,17 @@ export function PortfolioView() {
               <p data-reveal className={styles.productIntro}>
                 温柔不是装饰，而是让每一次打开、输入和等待都更自然。
               </p>
+              <div data-reveal className={styles.nameConcept}>
+                <span className={styles.nameConceptLabel}>NAME CONCEPT · 命名理念</span>
+                <p className={`${styles.geist} ${styles.nameConceptEquation}`}>
+                  COMI = Comma + I
+                </p>
+                <p className={styles.nameConceptBody}>
+                  AI 对话不是句号，而是逗号。
+                  <br />
+                  每一次交流都保留一点上下文，让下一次理解从这里继续。
+                </p>
+              </div>
             </div>
             <button
               type="button"
@@ -756,73 +906,7 @@ export function PortfolioView() {
         </div>
       </section>
 
-      <SeamBand variant={1} prevColor="#1f1916" nextColor="#fdfaf8" />
-
-      {/* ── 05b Validation ── */}
-      <section id="s5b" className={`${styles.section} ${styles.validation}`}>
-        <div className={styles.validationInner}>
-          <div className={styles.sectionHead}>
-            <h2 data-reveal className={styles.sectionTitle}>
-              产品之外的真实反馈
-            </h2>
-            <span className={styles.eyebrow}>VALIDATION · 外部兴趣与体验验证</span>
-          </div>
-
-          <div className={styles.validationStats}>
-            <div data-reveal className={`${styles.statCard} ${styles.statCardBig}`}>
-              <span className={`${styles.geist} ${styles.statNumber}`}>25</span>
-              <span className={styles.statLabel}>条主动私信</span>
-            </div>
-            <div data-reveal className={styles.statCard}>
-              <span className={`${styles.geist} ${styles.statNumber}`}>340+</span>
-              <span className={styles.statLabel}>点赞</span>
-            </div>
-            <div data-reveal className={styles.statCard}>
-              <span className={`${styles.geist} ${styles.statNumber}`}>120+</span>
-              <span className={styles.statLabel}>收藏</span>
-            </div>
-          </div>
-
-          <p data-reveal className={styles.validationIntro}>
-            COMI 相关内容公开分享后获得持续互动，其中 25
-            位用户主动私信询问前端构建方式——不是靠推广换来的关注，而是产品概念本身带来的一层真实外部兴趣信号。
-          </p>
-
-          <p data-reveal className={styles.validationInsight}>
-            <span className={styles.validationInsightLabel}>Key Insight</span>
-            用户对&ldquo;跨模型记忆延续&rdquo;的价值有明确感知，但也点出&ldquo;关于我&rdquo;存在主体歧义——这直接推动了&ldquo;关于我→关于你&rdquo;的重命名，以及保留对话纠错与手动编辑双路径的设计。
-          </p>
-
-          <div data-reveal className={styles.validationShots}>
-            <figure className={styles.validationShot}>
-              <div className={styles.memoryCardFrame}>
-                <img
-                  src="/images/2.png"
-                  alt="COMI 关于你卡片中的&ldquo;最近在做&rdquo;记忆：记录用户正在筹备的短剧项目"
-                />
-              </div>
-              <figcaption className={styles.memoryCaption}>
-                <strong>记忆库 · 已知</strong>
-                <span>此前对话里说过的项目背景，被沉淀为一条长期记忆</span>
-              </figcaption>
-            </figure>
-            <figure className={styles.validationShot}>
-              <div className={styles.memoryCardFrame}>
-                <img
-                  src="/images/1.png"
-                  alt="全新聊天窗口零上下文时，COMI 调用记忆库准确回忆项目背景，并诚实说明尚未掌握的最新进展"
-                />
-              </div>
-              <figcaption className={styles.memoryCaption}>
-                <strong>新窗口 · 零上文</strong>
-                <span>跨模型调用记忆库作答，且诚实区分&ldquo;已知&rdquo;与&ldquo;未知&rdquo;</span>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <SeamBand variant={0} prevColor="#fdfaf8" nextColor="#faf4f2" />
+      <SeamBand variant={1} prevColor="#1f1916" nextColor="#faf4f2" />
 
       {/* ── 06 Tech stack ── */}
       <section id="s6" className={`${styles.section} ${styles.stack}`}>
@@ -852,6 +936,239 @@ export function PortfolioView() {
 
       <SeamBand variant={2} prevColor="#fdfaf8" nextColor="#fdfaf8" />
 
+      {/* ── 06b Validation ── */}
+      <section id="s6b" className={`${styles.section} ${styles.validation}`}>
+        <div className={styles.validationInner}>
+          <div className={styles.sectionHead}>
+            <h2 data-reveal className={styles.sectionTitle}>
+              产品之外的真实反馈
+            </h2>
+            <span className={`${styles.eyebrow} ${styles.validationEyebrow}`}>
+              VALIDATION · 外部信号与用户验证
+            </span>
+          </div>
+          <p data-reveal className={styles.validationLede}>
+            From public interest signals to exploratory usability testing.
+          </p>
+
+          {/* 01 · Public signal + usability test summary, side by side */}
+          <div className={styles.validationIntro}>
+            <div data-reveal data-dir="left">
+              <div className={styles.validationColHead}>
+                <span className={styles.validationColTitle}>PUBLIC INTEREST SIGNAL</span>
+                <span className={styles.validationColTag}>公开兴趣信号</span>
+              </div>
+
+              <div className={styles.validationStats}>
+                {PUBLIC_METRICS.map((m) => (
+                  <div key={m.label} className={styles.statCard}>
+                    <span className={`${styles.geist} ${styles.statNumber}`}>{m.value}</span>
+                    <span className={styles.statLabel}>{m.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className={styles.validationCopy}>
+                COMI 相关内容公开分享后获得持续互动，并有 25
+                位用户主动私信询问构建方式。对产品概念与实现路径提供了一层来自真实外部用户的兴趣信号。
+              </p>
+
+              <div className={styles.validationShots}>
+                {PUBLIC_SHOTS.map((shot) => (
+                  <ShotSlot key={shot.id} id={shot.id} alt={shot.alt} />
+                ))}
+              </div>
+            </div>
+
+            <div data-reveal data-dir="right">
+              <div className={styles.validationColHead}>
+                <span className={styles.validationColTitle}>EXPLORATORY USABILITY TEST</span>
+                <span className={styles.validationColTag}>N=4 用户测试</span>
+              </div>
+
+              <div className={styles.validationParticipants}>
+                {TEST_PARTICIPANT_MIX.map((p) => (
+                  <span key={p} className={styles.participantPill}>
+                    {p}
+                  </span>
+                ))}
+              </div>
+
+              <div className={styles.validationFindings}>
+                {INTRO_FINDINGS.map((f) => (
+                  <div key={f.label} className={styles.validationBlock}>
+                    <span className={styles.findingLabel}>{f.label}</span>
+                    <p className={styles.findingBody}>{f.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <hr className={styles.validationDivider} />
+
+          {/* 02 · Test setup */}
+          <div className={styles.validationStep}>
+            <span className={styles.validationStepNo}>02</span>
+            <span className={styles.validationStepLabel}>Exploratory Usability Test · N=4</span>
+          </div>
+          <div data-reveal className={styles.validationSetupHead}>
+            <h3 className={styles.sectionTitle} style={{ fontSize: "clamp(21px, 2.2vw, 30px)" }}>
+              从&ldquo;能不能用&rdquo;，到&ldquo;用户为什么愿意继续用&rdquo;
+            </h3>
+            <p className={styles.validationSetupCopy}>
+              通过 4
+              位不同AI使用深度的参与者，观察COMI在首次理解、长期记忆、跨模型连续性与陪伴体验上的真实反馈。
+            </p>
+          </div>
+
+          <div data-reveal className={styles.validationParticipants} style={{ marginTop: 20 }}>
+            {TEST_PARTICIPANT_MIX.map((p) => (
+              <span key={p} className={styles.participantPill}>
+                {p}
+              </span>
+            ))}
+          </div>
+
+          <div data-reveal className={styles.validationSetupGrid}>
+            <div className={styles.validationBlock}>
+              <span className={styles.setupLabel}>Research Objective</span>
+              <p className={styles.setupValue}>
+                验证不同使用深度的用户是否能理解并使用：长期记忆 / About You / 记忆库 / Shared
+                Context / 陪伴式交互
+              </p>
+            </div>
+            <div className={styles.validationBlock}>
+              <span className={styles.setupLabel}>Method</span>
+              <p className={styles.setupValue}>
+                Exploratory Usability Test
+                <br />
+                n=4 · 15–20 min / participant
+              </p>
+            </div>
+            <div className={styles.validationBlock}>
+              <span className={styles.setupLabel}>Participants</span>
+              <ul className={styles.participantList}>
+                {RESEARCH_PARTICIPANTS.map((p) => (
+                  <li key={p.code}>
+                    <span className={styles.participantCode}>{p.code}</span>
+                    {p.desc}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* 03 · Task flow */}
+          <div className={`${styles.validationStep} ${styles.validationStepGap}`}>
+            <span className={styles.validationStepNo}>03</span>
+            <span className={styles.validationStepLabel}>Core Task Flow · 核心任务流程</span>
+          </div>
+          <div data-reveal className={styles.taskFlow}>
+            {TASK_FLOW.map((step, i) => (
+              <Fragment key={step.en}>
+                <div className={styles.taskFlowStep}>
+                  <span className={styles.taskFlowNo}>{i + 1}</span>
+                  <span className={styles.taskFlowEn}>{step.en}</span>
+                  <span className={styles.taskFlowZh}>{step.zh}</span>
+                </div>
+                {i < TASK_FLOW.length - 1 ? (
+                  <div className={styles.taskFlowArrow} aria-hidden="true">
+                    →
+                  </div>
+                ) : null}
+              </Fragment>
+            ))}
+          </div>
+
+          {/* 04 · Evidence from real conversations */}
+          <div className={`${styles.validationStep} ${styles.validationStepGap}`}>
+            <span className={styles.validationStepNo}>04</span>
+            <span className={styles.validationStepLabel}>Evidence From Real Conversations</span>
+          </div>
+          <p data-reveal className={styles.validationCopy} style={{ maxWidth: "46em" }}>
+            以下三段来自真实参与者的原始对话记录（已截取相关片段），而非转述或复述。
+          </p>
+          <div className={styles.evidenceGrid}>
+            {EVIDENCE.map((e, i) => (
+              <figure
+                key={e.code}
+                data-reveal
+                data-dir={i === 0 ? "left" : i === 2 ? "right" : undefined}
+                className={styles.evidenceItem}
+              >
+                <div className={styles.evidenceFrame}>
+                  <img src={e.img} alt={e.alt} loading="lazy" />
+                </div>
+                <figcaption>
+                  <span className={styles.evidenceLabel}>{e.label}</span>
+                  <p className={styles.evidenceBody}>{e.body}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          {/* 05 · Cross-participant synthesis */}
+          <div className={`${styles.validationStep} ${styles.validationStepGap}`}>
+            <span className={styles.validationStepNo}>05</span>
+            <span className={styles.validationStepLabel}>Cross-Participant Synthesis</span>
+          </div>
+          <div className={styles.synthesisGrid}>
+            {SYNTHESIS.map((s) => (
+              <div key={s.no} data-reveal className={styles.synthesisItem}>
+                <span className={`${styles.geist} ${styles.synthesisNo}`}>{s.no}</span>
+                <h4 className={styles.synthesisTitle}>{s.title}</h4>
+                <p className={styles.synthesisBody}>{s.body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* 06 · Design response */}
+          <div className={`${styles.validationStep} ${styles.validationStepGap}`}>
+            <span className={styles.validationStepNo}>06</span>
+            <span className={styles.validationStepLabel}>Design Response · 产品回应</span>
+          </div>
+          <div className={styles.responseGrid}>
+            <div data-reveal data-dir="left" className={styles.responseCol}>
+              <div className={styles.responseColHead}>
+                <span className={styles.responseDot} aria-hidden="true" />
+                <span className={styles.responseColTitle}>IMPLEMENTED · 已落地</span>
+              </div>
+              <ul className={styles.responseList}>
+                {DESIGN_RESPONSE.implemented.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div data-reveal data-dir="right" className={`${styles.responseCol} ${styles.responseColNext}`}>
+              <div className={styles.responseColHead}>
+                <span className={styles.responseDot} aria-hidden="true" />
+                <span className={styles.responseColTitle}>NEXT ITERATION · 探索中</span>
+              </div>
+              <ul className={styles.responseList}>
+                {DESIGN_RESPONSE.next.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Ending statement */}
+          <div data-reveal className={styles.validationEnding}>
+            <p className={styles.validationEndingText}>
+              &ldquo;验证改变的不是某一个按钮，而是我对 COMI
+              核心价值的理解：用户真正需要的不是更多 AI 功能，而是一段可以延续的上下文关系。&rdquo;
+            </p>
+            <p className={styles.validationEndingEn}>
+              Validation shifted the question from &ldquo;What should COMI do?&rdquo; to
+              &ldquo;What makes users want to continue the relationship?&rdquo;
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <SeamBand variant={0} prevColor="#fdfaf8" nextColor="#fdfaf8" />
+
       {/* ── 07 About ── */}
       <section id="s7" className={`${styles.section} ${styles.about}`}>
         <div className={styles.aboutGlow} />
@@ -860,7 +1177,11 @@ export function PortfolioView() {
             <div className={styles.avatarWrap}>
               <div className={styles.avatarGlow} />
               <div className={styles.avatarSlot}>
-                <span>照片 · 头像</span>
+                <img
+                  src="/images/头像.jpg"
+                  alt="刘力源 Leona Liu 头像照片"
+                  className={styles.avatarImg}
+                />
               </div>
             </div>
             <div>

@@ -847,6 +847,41 @@
   color: var(--ink-mute);
 }
 
+/* Compact naming-concept chip — lightweight aside, not a new card
+   tier. Sits under the section intro, near the welcome/app-icon
+   screen in the grid below. */
+.nameConcept {
+  margin: 22px 0 0;
+  padding: 14px 20px;
+  max-width: 30em;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(42, 36, 34, 0.08);
+}
+
+.nameConceptLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+}
+
+.nameConceptEquation {
+  margin: 8px 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.nameConceptBody {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-mute);
+}
+
 .modeToggle {
   flex: 0 0 auto;
   display: inline-flex;
@@ -1983,7 +2018,12 @@
   color: rgba(255, 255, 255, 0.4);
 }
 
-/* ── 05b Validation — external interest + usability signal ── */
+/* ── 05b Validation — external signal + exploratory usability test ──
+   Deliberately more restrained/editorial than the rest of the page:
+   thin 1px borders instead of glass blur, no card rotation, minimal
+   shadow. Reads as a research case-study insert rather than another
+   marketing block. Still uses the page's own tokens (ink/coral/geist)
+   so it stays visually native. */
 
 .validation {
   background: var(--bg);
@@ -1991,120 +2031,575 @@
 }
 
 .validationInner {
-  max-width: 1100px;
+  max-width: 1180px;
   margin: 0 auto;
+}
+
+.validationEyebrow {
+  color: var(--coral-deep);
+}
+
+.validationLede {
+  margin: 14px 0 0;
+  font-size: 15px;
+  color: var(--ink-faint);
+}
+
+/* Numbered sub-heading used to open each of the section's six parts.
+   .validationStepGap adds the rhythm between parts 02-06 (kept as its
+   own class, not inline styles, so the whole section's vertical scale
+   stays adjustable from one place). */
+.validationStep {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 6px;
+}
+
+.validationStepGap {
+  margin-top: 40px;
+}
+
+.validationStepNo {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--coral-deep);
+  letter-spacing: 0.04em;
+}
+
+.validationStepLabel {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink-ghost);
+  text-transform: uppercase;
+}
+
+.validationDivider {
+  margin: 44px 0;
+  border: none;
+  border-top: 1px solid rgba(42, 36, 34, 0.1);
+}
+
+/* Bordered block used throughout instead of the page's usual glass
+   card — flatter, no rotation/shadow, closer to a research artifact. */
+.validationBlock {
+  border: 1px solid rgba(42, 36, 34, 0.1);
+  border-radius: 18px;
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ── 01 · Intro: public signal + usability test summary ── */
+
+.validationIntro {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+
+.validationColHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.validationColTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+}
+
+.validationColTag {
+  font-size: 11.5px;
+  color: var(--ink-ghost);
+  white-space: nowrap;
 }
 
 .validationStats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(14px, 2.4vw, 22px);
-  margin-top: 44px;
+  gap: 1px;
+  background: rgba(42, 36, 34, 0.1);
+  border: 1px solid rgba(42, 36, 34, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .statCard {
-  padding: 26px 24px;
-  border-radius: 26px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 14px 32px rgba(81, 58, 48, 0.08);
+  padding: 18px 16px;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  transition:
-    transform 0.4s var(--bounce),
-    box-shadow 0.4s ease;
-}
-
-.statCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 44px rgba(81, 58, 48, 0.12);
-}
-
-.statCardBig {
-  background: linear-gradient(155deg, rgba(226, 112, 63, 0.14), rgba(255, 255, 255, 0.7));
-  border-color: rgba(226, 112, 63, 0.24);
+  gap: 4px;
 }
 
 .statNumber {
-  font-size: clamp(34px, 5vw, 52px);
+  font-size: clamp(28px, 3.6vw, 38px);
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--coral-deep);
-}
-
-.statCardBig .statNumber {
-  font-size: clamp(44px, 6.4vw, 68px);
+  color: var(--ink);
 }
 
 .statLabel {
-  font-size: 13.5px;
-  color: var(--ink-mute);
+  font-size: 12.5px;
+  color: var(--ink-faint);
 }
 
-.validationIntro {
-  margin: 22px 0 0;
-  font-size: 15.5px;
+.validationCopy {
+  margin: 18px 0 0;
+  font-size: 14.5px;
   font-weight: 400;
   line-height: 1.85;
   color: var(--ink-mute);
-  max-width: 42em;
-}
-
-.validationInsight {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 10px;
-  margin: 28px 0 0;
-  padding: 18px 22px;
-  border-radius: 18px;
-  background: rgba(226, 112, 63, 0.08);
-  border-left: 3px solid var(--coral);
-  font-size: 14.5px;
-  line-height: 1.75;
-  color: var(--ink-soft);
-  max-width: 46em;
-}
-
-.validationInsightLabel {
-  flex: 0 0 auto;
-  font-weight: 700;
-  color: var(--coral-deep);
-  letter-spacing: 0.02em;
 }
 
 .validationShots {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(20px, 3.4vw, 36px);
-  margin-top: 48px;
-  max-width: 640px;
+  gap: 12px;
+  margin-top: 18px;
 }
 
-.validationShot {
+/* Reserve the frame's footprint up front (aspect-ratio) so a missing
+   placeholder asset never shifts layout once it's dropped in. */
+.shotFrame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  border: 1px solid rgba(42, 36, 34, 0.12);
+  background: rgba(42, 36, 34, 0.03);
+  overflow: hidden;
+}
+
+/* object-fit: contain (not cover) — these are comment screenshots,
+   so no edge of the real asset should ever be cropped off. */
+.shotFrame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.shotPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-ghost);
+}
+
+.shotPlaceholder .geist {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+
+.validationParticipants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.participantPill {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(42, 36, 34, 0.14);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.validationFindings {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.findingLabel {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--coral-deep);
+  margin-bottom: 6px;
+}
+
+.findingBody {
   margin: 0;
-  transform: rotate(-1deg);
-  transition: transform 0.5s var(--bounce);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-soft);
 }
 
-.validationShot:nth-child(2) {
-  transform: rotate(1deg) translateY(10px);
+@media (max-width: 860px) {
+  .validationIntro {
+    grid-template-columns: 1fr;
+  }
 }
 
-.validationShot:hover {
-  transform: translateY(-6px) rotate(0deg);
+/* ── 02 · Test setup ── */
+
+.validationSetupHead {
+  max-width: 44em;
+}
+
+.validationSetupCopy {
+  margin: 14px 0 0;
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--ink-mute);
+}
+
+.validationSetupGrid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.setupLabel {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-ghost);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.setupValue {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.participantList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.participantList li {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  display: flex;
+  gap: 8px;
+}
+
+.participantCode {
+  font-weight: 700;
+  color: var(--ink);
 }
 
 @media (max-width: 700px) {
-  .validationStats {
+  .validationSetupGrid {
     grid-template-columns: 1fr;
   }
-  .validationShots {
-    grid-template-columns: 1fr;
-    max-width: 360px;
+}
+
+/* ── 03 · Task flow ── */
+
+.taskFlow {
+  margin-top: 28px;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.taskFlowStep {
+  flex: 1 1 0;
+  padding: 18px 14px;
+  text-align: center;
+  border-top: 1px solid rgba(42, 36, 34, 0.14);
+  border-bottom: 1px solid rgba(42, 36, 34, 0.14);
+}
+
+.taskFlowStep:first-child {
+  border-left: 1px solid rgba(42, 36, 34, 0.14);
+  border-radius: 14px 0 0 14px;
+}
+
+.taskFlowStep:last-child {
+  border-right: 1px solid rgba(42, 36, 34, 0.14);
+  border-radius: 0 14px 14px 0;
+}
+
+.taskFlowNo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.taskFlowEn {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.taskFlowZh {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.taskFlowArrow {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  color: var(--ink-ghost);
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .taskFlow {
+    flex-direction: column;
   }
+  .taskFlowStep {
+    border-left: 1px solid rgba(42, 36, 34, 0.14) !important;
+    border-right: 1px solid rgba(42, 36, 34, 0.14) !important;
+    border-radius: 0 !important;
+  }
+  .taskFlowStep:first-child {
+    border-radius: 14px 14px 0 0 !important;
+  }
+  .taskFlowStep:last-child {
+    border-radius: 0 0 14px 14px !important;
+  }
+  .taskFlowArrow {
+    padding: 4px 0;
+    justify-content: center;
+    transform: rotate(90deg);
+  }
+}
+
+/* ── 04 · Evidence from real conversations ── */
+
+.evidenceGrid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 30px);
+}
+
+.evidenceItem {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.evidenceFrame {
+  border-radius: 16px;
+  border: 1px solid rgba(42, 36, 34, 0.12);
+  overflow: hidden;
+  background: #fff;
+}
+
+.evidenceFrame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.evidenceLabel {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--coral-deep);
+}
+
+.evidenceBody {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 860px) {
+  .evidenceGrid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+  }
+}
+
+/* ── 05 · Cross-participant synthesis ── */
+
+.synthesisGrid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(42, 36, 34, 0.1);
+  border: 1px solid rgba(42, 36, 34, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.synthesisItem {
+  background: var(--bg);
+  padding: 22px 24px;
+}
+
+.synthesisNo {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-ghost);
+}
+
+.synthesisTitle {
+  margin: 8px 0 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.synthesisBody {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--ink-mute);
+}
+
+@media (max-width: 700px) {
+  .synthesisGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── 06 · Design response ── */
+
+.responseGrid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 28px);
+}
+
+.responseCol {
+  border-radius: 20px;
+  border: 1px solid rgba(42, 36, 34, 0.1);
+  padding: 22px 24px;
+}
+
+.responseColNext {
+  border-style: dashed;
+}
+
+.responseColHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.responseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--coral);
+}
+
+.responseColNext .responseDot {
+  background: var(--ink-ghost);
+}
+
+.responseColTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.responseList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.responseList li {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  padding-left: 16px;
+  position: relative;
+}
+
+.responseList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 1.5px;
+  background: var(--ink-ghost);
+}
+
+@media (max-width: 700px) {
+  .responseGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Ending statement — reuses the site's dark "principle" treatment ── */
+
+.validationEnding {
+  margin-top: 44px;
+  padding: clamp(26px, 4vw, 44px);
+  border-radius: 28px;
+  background: linear-gradient(150deg, var(--dark-soft) 0%, var(--dark-deep) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.validationEndingText {
+  margin: 0;
+  font-size: clamp(19px, 2.2vw, 27px);
+  line-height: 1.65;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f6efea;
+  text-wrap: pretty;
+}
+
+.validationEndingEn {
+  margin: 16px 0 0;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: rgba(246, 239, 234, 0.5);
 }
 
 /* ── 06 Tech stack ──────────────────────────────────── */
@@ -2256,11 +2751,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .avatarSlot span {
   font-size: 12.5px;
   color: #a2958e;
+}
+
+/* Portrait fills the circular slot; source (723×904) is taller than
+   the 1:1 frame so cover is needed — centered crop keeps the face and
+   upper body, only trimming a little hair/shoulder at top and bottom. */
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
 }
 
 .aboutName {
