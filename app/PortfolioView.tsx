@@ -102,39 +102,34 @@ const STACK = [
   { name: "Codex", desc: "demo 制作 · 视频演示辅助" },
 ];
 
-// Core-features cards (Figma: COMI_P04_Features, node 12:2). "关于我" in
-// the source design is rendered as "关于你" to match the rename already
-// applied throughout the memory-feature deep dive and validation section
-// (see s3c / s6b) — kept consistent rather than reintroducing the name
-// collision with the nav's author-intro link that prompted that rename.
+// Core features reflect the currently implemented COMI capabilities.
 const CORE_FEATURES = [
   {
     no: "01",
-    status: "implemented" as const,
     icon: "notes" as const,
-    title: "About Me",
+    title: "About You",
     titleZh: "关于你",
-    body: "COMI 从持续对话中沉淀值得长期保留的信息，并逐渐形成一份关于用户的动态理解。用户首先感知到的不是“系统存了什么字段”，而是“COMI 现在怎样理解我”。",
-    chips: ["基本信息", "偏好与习惯", "长期目标", "最近在做"],
+    body: "COMI 从对话中自动沉淀值得长期保留的信息，逐渐积累对你的背景、偏好与目标的理解。你可以查看、编辑或删除记忆，随时纠正 AI 对你的理解。",
+    chips: ["自动沉淀", "查看", "编辑", "删除"],
   },
   {
     no: "02",
-    status: "implemented" as const,
-    icon: "folder" as const,
-    title: "File Context",
-    body: "将用户分享过的资料、作品与项目文件纳入长期上下文，让 AI 理解的不只是单次聊天，也包括持续协作中的共同信息。",
-    note: "一份记忆，多模型共享——已在 Claude / GPT / Gemini 间落地",
-    chips: ["资料", "创作", "灵感"],
+    icon: "switch" as const,
+    title: "Model Switching",
+    titleZh: "对话内切换模型",
+    body: "在同一个对话中切换模型，新模型可以读取前面的聊天内容，接着当前话题回应。想听另一个模型的观点，不必重新复制对话、补充背景。",
+    note: "和 GPT 讨论一个想法 → 切换 Claude，听听它的看法",
+    chips: ["同一对话", "模型切换", "上下文延续"],
   },
   {
     no: "03",
-    status: "exploration" as const,
     icon: "roundtable" as const,
     dark: true,
-    title: "Shared Context",
-    body: "在同一份 Personal Context 基础上，不同模型可以继续理解同一个用户。跨模型切换、LLM Roundtable 等能力将作为 Shared Context 成立后的下一阶段探索。",
-    chips: ["Claude", "GPT", "Gemini"],
-    accentChip: "Future Applications",
+    title: "Shared Memory",
+    titleZh: "跨对话共享记忆",
+    body: "不同对话与模型共用同一份长期记忆库。在一个对话中保存的记忆，可以在新对话中被其他模型读取，让已经沉淀的个人信息持续发挥作用。",
+    note: "Claude 保存一条偏好 → 新开 GPT 对话，也能读取这条记忆",
+    chips: ["跨对话", "跨模型", "共享记忆"],
   },
 ];
 
@@ -426,12 +421,12 @@ function NotesIcon({ className }: { className?: string }) {
   );
 }
 
-/** Small open-folder glyph for the File Context feature card. */
-function FolderIcon({ className }: { className?: string }) {
+/** Switching arrows for in-conversation model changes. */
+function ModelSwitchIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
-        d="M4 6.5a1.5 1.5 0 0 1 1.5-1.5h4l1.7 2H18.5A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5v-11Z"
+        d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"
         stroke="currentColor"
         strokeWidth={1.6}
         strokeLinejoin="round"
@@ -632,15 +627,14 @@ export function PortfolioView() {
         <div className={styles.featuresInner}>
           <div className={styles.sectionHead}>
             <h2 data-reveal className={styles.sectionTitle}>
-              已实现 ×2，已设计 ×1——一套让记忆独立于模型的系统
+              三项核心能力，让对话与记忆在不同模型间延续
             </h2>
             <span className={`${styles.eyebrow} ${styles.featuresEyebrow}`}>
               CORE FEATURES · 核心功能
             </span>
           </div>
           <p data-reveal className={styles.productIntro}>
-            真正的陪伴，是每次回来，都能接着上次继续。01 已在产品中运行，02 完成产品设计，03
-            是让个人上下文跨模型延续的探索方向。
+            在当前对话中切换模型，可以接着前文继续聊；开启新对话，也能调用同一份长期记忆。
           </p>
           <div className={styles.featureGrid}>
             {CORE_FEATURES.map((f) => (
@@ -655,22 +649,20 @@ export function PortfolioView() {
                   ) : (
                     <div
                       className={`${styles.featureIconCircle} ${
-                        f.icon === "folder" ? styles.featureIconCircleBlue : ""
+                        f.icon === "switch" ? styles.featureIconCircleBlue : ""
                       }`}
                     >
                       {f.icon === "notes" ? (
                         <NotesIcon className={styles.featureIconGlyph} />
                       ) : (
-                        <FolderIcon className={styles.featureIconGlyph} />
+                        <ModelSwitchIcon className={styles.featureIconGlyph} />
                       )}
                     </div>
                   )}
                   <span
-                    className={`${styles.geist} ${styles.statusPill} ${
-                      f.status === "exploration" ? styles.statusPillExploration : ""
-                    }`}
+                    className={`${styles.geist} ${styles.statusPill}`}
                   >
-                    {f.status === "implemented" ? "IMPLEMENTED" : "EXPLORATION"}
+                    IMPLEMENTED
                   </span>
                 </div>
                 <h3 className={styles.featureTitle}>
@@ -685,9 +677,6 @@ export function PortfolioView() {
                       {chip}
                     </span>
                   ))}
-                  {f.accentChip ? (
-                    <span className={styles.featureTagPillAccent}>{f.accentChip}</span>
-                  ) : null}
                 </div>
               </div>
             ))}
