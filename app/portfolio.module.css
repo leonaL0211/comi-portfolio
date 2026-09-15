@@ -458,8 +458,141 @@
 }
 
 .heroReadTime {
+  flex-basis: 100%;
+  margin-top: -8px;
   font-size: 13px;
   color: var(--ink-ghost);
+}
+
+.page .heroFilmLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.page .heroFilmLink:hover {
+  color: var(--coral-deep);
+}
+
+.heroFilmLink:focus-visible,
+.filmPlay:focus-visible,
+.filmPlayer:focus-visible {
+  outline: 2px solid var(--coral-deep);
+  outline-offset: 6px;
+}
+
+.filmDuration {
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Experience film ──────────────────────────────── */
+
+.film {
+  padding: clamp(72px, 7vw, 96px) clamp(24px, 7vw, 130px);
+  scroll-margin-top: 72px;
+  background: var(--bg);
+}
+
+.filmInner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.filmHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 28px;
+}
+
+.filmTitle {
+  font-size: clamp(24px, 2.6vw, 36px);
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.filmMeta,
+.filmHint {
+  color: var(--ink-mute);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.filmFrame {
+  position: relative;
+}
+
+.filmPlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  background: var(--coral);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(90, 57, 35, 0.2);
+  cursor: pointer;
+}
+
+.filmPlay:hover {
+  background: var(--coral-deep);
+}
+
+.filmPlayer {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  border: 1px solid rgba(138, 128, 124, 0.16);
+  border-radius: 16px;
+  background: #f3efe9;
+  box-shadow: 0 12px 40px rgba(80, 58, 46, 0.06);
+}
+
+.filmPlayer:fullscreen {
+  border: 0;
+  border-radius: 0;
+  background: #000;
+}
+
+.filmHint {
+  margin-top: 18px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .film {
+    padding: 56px 20px;
+  }
+
+  .filmHeading {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .filmMeta {
+    flex-basis: 100%;
+  }
+
+  .filmHint {
+    max-width: 23em;
+    margin-inline: auto;
+    font-size: 12px;
+  }
 }
 
 .heroVisual {

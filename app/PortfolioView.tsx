@@ -34,7 +34,7 @@ const NAV_LINKS = [
   { href: "#s6b", label: "用户验证" },
 ];
 
-const DOT_SECTIONS = ["s1", "s2", "s3", "s4", "s3b", "s3c", "s5", "s6", "s6b", "s7"];
+const DOT_SECTIONS = ["s1", "film", "s2", "s3", "s4", "s3b", "s3c", "s5", "s6", "s6b", "s7"];
 
 const PRODUCT_SCREENS = [
   {
@@ -461,6 +461,9 @@ function ShotSlot({ id, alt }: { id: string; alt: string }) {
 export function PortfolioView() {
   const [scrolled, setScrolled] = useState(false);
   const [isDarkPreview, setIsDarkPreview] = useState(false);
+  const [filmStarted, setFilmStarted] = useState(false);
+  const [filmFailed, setFilmFailed] = useState(false);
+  const filmRef = useRef<HTMLVideoElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -541,7 +544,7 @@ export function PortfolioView() {
 
       <nav className={styles.dotNav} aria-label="章节导航">
         {DOT_SECTIONS.map((id) => (
-          <a key={id} href={`#${id}`} className={styles.dot} aria-label={id} />
+          <a key={id} href={`#${id}`} className={styles.dot} aria-label={id === "film" ? "COMI 体验短片" : id} />
         ))}
       </nav>
 
@@ -569,6 +572,12 @@ export function PortfolioView() {
             <a href="#s2" className={styles.heroCtaPrimary}>
               了解 COMI 的诞生 <span>↓</span>
             </a>
+            <a href="#film" className={styles.heroFilmLink}>
+              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M5 3.5 12 8l-7 4.5Z" fill="currentColor" />
+              </svg>
+              观看短片 <span className={styles.filmDuration}>1:14</span>
+            </a>
             <span className={styles.heroReadTime}>3 分钟读完</span>
           </div>
         </div>
@@ -580,6 +589,57 @@ export function PortfolioView() {
               <MascotFace />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Experience film ── */}
+      <section id="film" className={styles.film} aria-labelledby="film-title">
+        <div className={styles.filmInner}>
+          <div className={styles.filmHeading}>
+            <h2 id="film-title" className={styles.filmTitle}>从一次对话，到持续理解</h2>
+            <p className={styles.filmMeta}>COMI 体验短片 <span aria-hidden="true">·</span> 1 分 14 秒</p>
+          </div>
+          <div className={styles.filmFrame}>
+            <video
+              ref={filmRef}
+              className={styles.filmPlayer}
+              width={1920}
+              height={1080}
+              controls
+              playsInline
+              preload="none"
+              poster="/images/comi-experience-poster.webp"
+              aria-label="COMI 体验短片：从一次对话，到持续理解"
+              onPlay={() => {
+                setFilmStarted(true);
+                setFilmFailed(false);
+              }}
+              onError={() => setFilmFailed(true)}
+            >
+              <source src="/videos/comi-experience.mp4" type="video/mp4" />
+              你的浏览器暂不支持视频播放，<a href="/videos/comi-experience.mp4">打开 COMI 体验短片</a>。
+            </video>
+            {!filmStarted && !filmFailed && (
+              <button
+                type="button"
+                className={styles.filmPlay}
+                aria-label="播放 COMI 体验短片"
+                onClick={() => {
+                  filmRef.current?.play().catch(() => setFilmFailed(true));
+                }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m9 5 11 7-11 7Z" fill="currentColor" />
+                </svg>
+              </button>
+            )}
+          </div>
+          {filmFailed && (
+            <p className={styles.filmHint} role="status">
+              暂时无法在页面内播放，<a href="/videos/comi-experience.mp4">直接打开短片</a>。
+            </p>
+          )}
+          <p className={styles.filmHint}>全屏观看，感受更多细节</p>
         </div>
       </section>
 
