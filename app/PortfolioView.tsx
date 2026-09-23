@@ -1370,14 +1370,14 @@ export function PortfolioView() {
                 >
                   badyuanzi416@gmail.com
                 </a>
-                {/* Resume PDF asset not yet supplied — placeholder, non-interactive. */}
-                <span
+                {/* Download the supplied original resume PDF. */}
+                <a
                   className={styles.contactCta}
-                  title="简历文件待补充"
-                  aria-disabled="true"
+                  href="/documents/leona-liu-ai-product-resume.pdf"
+                  download="刘力源_AI产品.pdf"
                 >
                   简历下载 PDF ↓
-                </span>
+                </a>
               </div>
             </div>
           </div>
