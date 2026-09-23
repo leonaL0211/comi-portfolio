@@ -464,6 +464,18 @@ function ShotSlot({ id, alt }: { id: string; alt: string }) {
 }
 
 export function PortfolioView() {
+  const [copyFeedback, setCopyFeedback] = useState("");
+
+  async function copyContact(value: string, label: string) {
+    setCopyFeedback("");
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopyFeedback(`${label}已复制`);
+    } catch {
+      setCopyFeedback(`复制失败，请长按或选中${label}手动复制`);
+    }
+  }
+
   const [scrolled, setScrolled] = useState(false);
   const [isDarkPreview, setIsDarkPreview] = useState(false);
   const [filmStarted, setFilmStarted] = useState(false);
@@ -1361,15 +1373,17 @@ export function PortfolioView() {
                 COMI 是我第一个从 0 到 1 的 AI 产品，也是我理解&ldquo;AI 与人的关系&rdquo;的一次完整实验。
               </p>
               <div className={styles.aboutContacts}>
-                <a href="tel:17623068416" className={`${styles.geist} ${styles.contactLink}`}>
+                <button type="button" onClick={() => copyContact("17623068416", "电话号码")} aria-label="复制电话号码 17623068416" className={`${styles.geist} ${styles.contactLink}`}>
                   176 2306 8416
-                </a>
-                <a
-                  href="mailto:badyuanzi416@gmail.com"
+                </button>
+                <button
+                  type="button"
+                  onClick={() => copyContact("badyuanzi416@gmail.com", "邮箱地址")}
+                  aria-label="复制邮箱地址 badyuanzi416@gmail.com"
                   className={`${styles.geist} ${styles.contactLink}`}
                 >
                   badyuanzi416@gmail.com
-                </a>
+                </button>
                 {/* Download the supplied original resume PDF. */}
                 <a
                   className={styles.contactCta}
@@ -1379,6 +1393,7 @@ export function PortfolioView() {
                   简历下载 PDF ↓
                 </a>
               </div>
+              <p className={styles.copyFeedback} role="status" aria-live="polite">{copyFeedback}</p>
             </div>
           </div>
 
