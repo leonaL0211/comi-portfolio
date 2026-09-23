@@ -1,0 +1,36 @@
+.heroThesis { margin-top: 18px; max-width: 36em; color: var(--coral-deep); font-size: 14px; line-height: 1.65; }
+.problemLabel { display: block; margin-bottom: 10px; font-size: 12px; font-weight: 700; letter-spacing: .05em; }
+.evolution { margin: 34px 0 54px; }
+.subheading { margin: 10px 0 0; font-size: clamp(20px, 2.1vw, 28px); line-height: 1.45; text-wrap: pretty; }
+.threeColumns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 26px; }
+.stage { display: block; padding-top: 18px; border-top: 1px solid rgba(42, 36, 34, .18); }
+.stage h4 { color: var(--ink); font-size: 17px; line-height: 1.5; margin: 12px 0 8px; }
+.stage p, .decision p { color: var(--ink-mute); font-size: 14px; line-height: 1.75; }
+.stage .why { margin-top: 10px; color: var(--ink-soft); }
+.label { color: var(--coral-deep); font-size: 11px; letter-spacing: .04em; font-weight: 600; }
+.thesis { margin-top: 20px; max-width: 38em; font-size: clamp(18px, 1.9vw, 23px); line-height: 1.6; color: var(--coral-deep); }
+.memoryFlow { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); list-style: none; margin: 36px 0 16px; padding: 0; gap: 18px; }
+.memoryFlow li { position: relative; padding: 16px 12px; border-radius: 16px; background: #fae8db; min-width: 0; }
+.memoryFlow li:not(:last-child)::after { content: "→"; position: absolute; right: -16px; top: 50%; color: var(--coral-deep); }
+.memoryFlow strong { display: block; margin-top: 8px; font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.note { margin-top: 14px; color: var(--ink-mute); font-size: 13px; line-height: 1.8; max-width: 78em; }
+.decision { border-left: 2px solid var(--accent); padding-left: 18px; }
+.decision h3 { margin-bottom: 8px; font-size: 19px; }
+.fields { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.fields span { padding: 7px 13px; border: 1px solid rgba(42,36,34,.14); border-radius: 999px; color: var(--ink-soft); font-size: 12px; }
+.contextBlock { margin-top: 44px; padding-top: 30px; border-top: 1px solid rgba(42,36,34,.12); }
+.contextBlock dt { font-weight: 700; font-size: 16px; }
+.contextBlock dd { margin: 8px 0 0; font-size: 14px; line-height: 1.65; color: var(--ink-mute); }
+.body { margin-top: 22px; font-size: 15px; line-height: 1.8; color: var(--ink-soft); max-width: 72em; }
+.sharedContext { margin-top: 44px; padding: clamp(22px, 3vw, 36px); border: 1px dashed rgba(42,36,34,.25); border-radius: 28px; background: rgba(255,255,255,.6); scroll-margin-top: 96px; }
+.contextSources { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 28px; text-align: center; }
+.contextSources div { flex: 1; min-width: 0; }
+.contextSources strong { display: block; font-size: 15px; }
+.contextSources span { display: block; margin-top: 8px; font-size: 10px; letter-spacing: .04em; color: var(--ink-mute); }
+.contextSources b { color: var(--accent); }
+.contextDestination { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px; color: var(--coral-deep); font-size: 15px; }
+.evidenceResponse { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(42,36,34,.12); font-size: 13px; line-height: 1.75; color: var(--ink-soft); }
+.closing { position: relative; margin: 0 0 46px; max-width: 48em; }
+.closing p { margin-top: 14px; color: var(--ink-mute); font-size: 15px; line-height: 1.8; }
+@media (max-width: 1000px) { .memoryFlow { grid-template-columns: 1fr; gap: 22px; } .memoryFlow li { display: flex; gap: 14px; align-items: baseline; } .memoryFlow strong { margin: 0; } .memoryFlow li:not(:last-child)::after { content: "↓"; top: auto; bottom: -21px; left: 24px; right: auto; } }
+@media (max-width: 700px) { .threeColumns { grid-template-columns: 1fr; gap: 22px; } .contextSources { flex-direction: column; gap: 12px; } .contextSources div { flex: none; } }

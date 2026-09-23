@@ -837,10 +837,37 @@
 
 .featureGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
   margin-top: 54px;
   align-items: stretch;
+}
+
+/* Four capabilities share the existing card geometry at every breakpoint. */
+@media (min-width: 1400px) {
+  .featureGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .featureGrid { grid-template-columns: 1fr; }
+}
+
+.featureCard.featureCardExploration {
+  background: color-mix(in srgb, #eef3fe 35%, var(--bg));
+  outline: 1px dashed var(--accent);
+  outline-offset: -1px;
+}
+
+.statusPill.featureExplorationBadge {
+  background: transparent;
+  color: var(--coral-deep);
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.featureNote.featureExplorationTagline {
+  margin-top: auto;
+  padding-top: 8px;
 }
 
 /* Flatter, non-rotated card — these carry status badges (implemented /

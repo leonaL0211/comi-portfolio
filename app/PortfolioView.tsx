@@ -7,6 +7,8 @@ import { ChatDemo } from "./ChatDemo";
 import { MascotFace } from "./MascotFace";
 import { PetRotator } from "./PetRotator";
 import styles from "./portfolio.module.css";
+import caseStyles from "./case-study.module.css";
+import { ProductEvolution, MemoryFormation } from "./CaseStudySystem";
 
 /**
  * COMI product portfolio / case-study landing page.
@@ -25,16 +27,16 @@ import styles from "./portfolio.module.css";
 
 const NAV_LINKS = [
   { href: "#s2", label: "为什么" },
-  { href: "#s3", label: "功能" },
+  { href: "#s3", label: "产品演进" },
+  { href: "#memory-formation", label: "Memory" },
   { href: "#s4", label: "桌面陪伴" },
   { href: "#s3b", label: "界面" },
   { href: "#s3c", label: "记忆库" },
   { href: "#s5", label: "决策日志" },
-  { href: "#s6", label: "工具链" },
   { href: "#s6b", label: "用户验证" },
 ];
 
-const DOT_SECTIONS = ["s1", "film", "s2", "s3", "s4", "s3b", "s3c", "s5", "s6", "s6b", "s7"];
+const DOT_SECTIONS = ["s1", "film", "s2", "s3", "memory-formation", "s4", "s3b", "s3c", "s5", "s6", "s6b", "s7"];
 
 const PRODUCT_SCREENS = [
   {
@@ -178,7 +180,7 @@ const TASK_FLOW = [
   { en: "First Impression", zh: "首次理解" },
   { en: "About You", zh: "AI 如何理解我" },
   { en: "Memory Control", zh: "记住了什么" },
-  { en: "Shared Context", zh: "模型间共享什么" },
+  { en: "Shared Context", zh: "概念讨论：共享什么" },
   { en: "Priority", zh: "最想留下什么" },
 ];
 
@@ -191,21 +193,24 @@ const EVIDENCE = [
     label: "EVIDENCE A · MEMORY CONTROL",
     img: "/images/validation-evidence-memory.jpg",
     alt: "参与者聊天记录：说明发现记忆有误时，会直接告诉 AI 重新记一次，或去记忆库里手动改",
-    body: "用户会主动检查、修改甚至删除 AI 对自己的记忆，因此“可见、可控、可修正”本身就是信任的一部分。",
+    body: "观察：用户会先在对话中纠正 AI，再进入记忆库修改。学到：可信记忆需要两条修正路径。",
+    response: "产品回应 · 已有自动更新判断与手动编辑 / 删除；下一步验证修正入口与反馈是否足够清楚。",
   },
   {
     code: "B",
     label: "EVIDENCE B · SHARED CONTEXT",
     img: "/images/validation-evidence-context.jpg",
     alt: "参与者聊天记录：说明换模型时只希望带走最终结论和大纲，不需要搬运完整的修改过程",
-    body: "用户期待跨模型的不是机械复制完整聊天记录，而是模型能够延续对当前任务和个人背景的理解。",
+    body: "观察：用户希望保留最初想法与最终大纲，不需要每轮修改。学到：连续性取决于保留什么。",
+    response: "DESIGNED · Shared Context 优先验证 Goal / Key Decisions / Current State，而非完整聊天搬运。",
   },
   {
     code: "C",
     label: "EVIDENCE C · COMPANION EXPERIENCE",
     img: "/images/validation-evidence-companion.jpg",
     alt: "参与者聊天记录：说明喜欢 AI 发表情包、不说长句子，这些细节让对话更像和真人聊天",
-    body: "陪伴感并不只来自长篇回复。表情包、语气、微小回应方式等细节也会显著影响用户是否觉得“这个 AI 懂我”。",
+    body: "观察：用户喜欢表情包与短回复，也指出浮动挂件挡字。学到：陪伴感需要轻量且不打扰。",
+    response: "EXPLORATION · 延续轻陪伴方向，并把挂件位置与遮挡问题纳入后续验证。",
   },
 ];
 
@@ -234,16 +239,16 @@ const SYNTHESIS = [
 
 const DESIGN_RESPONSE = {
   implemented: [
-    '「关于我」入口 →「关于你」',
+    '聊天菜单入口改为「关于你」',
     "About You / 记忆相关入口重新组织",
     "主动记忆机制",
     "Memory 已实现基础可编辑 / 删除",
-    "Sticker / COMI on Desk 等轻陪伴互动探索",
   ],
   next: [
     "Shared Context 优先验证 Goal / Key Decisions / Current State",
     "进一步验证用户希望跨模型共享的 Context 粒度",
     "优化记忆修正入口与交互反馈",
+    "EXPLORATION · COMI on Desk 与轻陪伴互动",
     "继续验证长期记忆与陪伴体验之间的关系",
   ],
 };
@@ -566,7 +571,10 @@ export function PortfolioView() {
           <p data-reveal className={styles.heroSubtitle}>
             COMI 是一个拥有长期记忆、可以跨模型延续对话的 AI 陪伴产品。
             <br />
-            无论今天选择哪一个模型，都可以接着之前的话继续说。
+            围绕长期理解、共享语境与情感连续性，让下一次交流接着发生。
+          </p>
+          <p data-reveal className={caseStyles.heroThesis} lang="en">
+            Exploring how Memory &amp; Shared Context can make AI interactions continuous rather than session-based.
           </p>
           <div data-reveal className={styles.heroCtas}>
             <a href="#s2" className={styles.heroCtaPrimary}>
@@ -578,7 +586,7 @@ export function PortfolioView() {
               </svg>
               观看短片 <span className={styles.filmDuration}>1:14</span>
             </a>
-            <span className={styles.heroReadTime}>3 分钟读完</span>
+            <span className={styles.heroReadTime}>3–5 分钟速览</span>
           </div>
         </div>
 
@@ -639,7 +647,7 @@ export function PortfolioView() {
               暂时无法在页面内播放，<a href="/videos/comi-experience.mp4">直接打开短片</a>。
             </p>
           )}
-          <p className={styles.filmHint}>全屏观看，感受更多细节</p>
+          <p className={styles.filmHint}>体验短片包含已实现能力与设计探索；具体状态见下方 Product Evolution。</p>
         </div>
       </section>
 
@@ -653,26 +661,28 @@ export function PortfolioView() {
             <h2 data-reveal className={styles.whyTitle}>
               AI 会完成任务，
               <br />
-              却还不会
+              如何才能
               <span className={styles.keywordWrap}>
                 <span className={styles.keyword}>持续理解</span>
                 <HandUnderline className={styles.underlineSvg} />
               </span>
-              一个人。
+              一个人？
             </h2>
             <div className={styles.whyCards}>
               <div data-reveal data-dir="left" className={styles.whyCard}>
                 <p>
-                  我长期同时使用好几个 AI，也慢慢发现一个重复出现的问题：每个模型都只认识自己聊天窗口里的我。一换平台，背景、偏好、正在做的项目，都得重新说一遍。
+                  <span className={caseStyles.problemLabel}>USER PROBLEM</span>
+                  Users repeatedly explain themselves, their preferences and previous context.
                 </p>
               </div>
               <div data-reveal data-dir="right" className={styles.whyCard}>
                 <p>
-                  我开始意识到，这不只是&ldquo;切换模型麻烦&rdquo;。项目协作可以靠总结文本传递，但&ldquo;我是谁、习惯怎么沟通、最近在做什么&rdquo;，还是被分散存在不同模型里——问题不是聊天窗口不够好，而是我的上下文，从来没有独立存在过。
+                  <span className={caseStyles.problemLabel}>PRODUCT PROBLEM</span>
+                  AI interactions are often optimized for individual sessions rather than continuity across time.
                 </p>
               </div>
               <div data-reveal className={`${styles.whyCard} ${styles.whyCardHighlight}`}>
-                <p>COMI 想做的事很简单：让所有 AI 坐在同一张桌子前，看着同一个我。</p>
+                <p><span className={caseStyles.problemLabel}>DESIGN QUESTION</span>How might an AI product retain useful context over time without overwhelming each new interaction?</p>
                 <p className={styles.whyCardHighlightSub}>让个人记忆属于用户，而不是属于某一个模型。</p>
               </div>
             </div>
@@ -687,7 +697,7 @@ export function PortfolioView() {
         <div className={styles.featuresInner}>
           <div className={styles.sectionHead}>
             <h2 data-reveal className={styles.sectionTitle}>
-              三项核心能力，让对话与记忆在不同模型间延续
+              从三项核心能力，到多模型协作的下一步
             </h2>
             <span className={`${styles.eyebrow} ${styles.featuresEyebrow}`}>
               CORE FEATURES · 核心功能
@@ -696,6 +706,8 @@ export function PortfolioView() {
           <p data-reveal className={styles.productIntro}>
             在当前对话中切换模型，可以接着前文继续聊；开启新对话，也能调用同一份长期记忆。
           </p>
+          <ProductEvolution />
+          <h3 className={caseStyles.subheading}>三项已实现能力 · 一个探索方向</h3>
           <div className={styles.featureGrid}>
             {CORE_FEATURES.map((f) => (
               <div
@@ -740,11 +752,35 @@ export function PortfolioView() {
                 </div>
               </div>
             ))}
+            <div data-reveal className={`${styles.featureCard} ${styles.featureCardExploration}`}>
+              <div className={styles.featureCardTop}>
+                <div className={styles.featureIconCircle}>
+                  <svg className={styles.featureIconGlyph} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="m12 5 7 13H5L12 5Z" stroke="currentColor" strokeWidth={1.6} strokeLinejoin="round" />
+                    <circle cx="12" cy="5" r="2.5" fill="currentColor" />
+                    <circle cx="5" cy="18" r="2.5" fill="currentColor" />
+                    <circle cx="19" cy="18" r="2.5" fill="currentColor" />
+                  </svg>
+                </div>
+                <span className={`${styles.geist} ${styles.statusPill} ${styles.featureExplorationBadge}`}>
+                  EXPLORATION
+                </span>
+              </div>
+              <h3 className={styles.featureTitle}>04 LLM Roundtable · 多模型交叉验证</h3>
+              <p className={styles.featureDesc}>让多个模型在同一份共享上下文里同时在场，不是为了凑更多答案，而是让它们的分歧变得可见、并各自举证。当一个模型给出结论，另一个可以质疑、补证或指出它给不出来源——用户据此从&quot;几个说法&quot;收敛到&quot;一个可验证的结论&quot;。</p>
+              <p className={`${styles.featureNote} ${styles.featureExplorationTagline}`}>
+                <em>Not more answers, but visible disagreement and evidence-based convergence.</em>
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <SeamBand variant={0} prevColor="#fdfaf8" nextColor="#fdfaf8" />
+
+      <MemoryFormation />
+
+      <SeamBand variant={1} prevColor="#fdfaf8" nextColor="#fdfaf8" />
 
       {/* ── 04 Desktop companion ── */}
       <section id="s4" className={`${styles.section} ${styles.pet}`}>
@@ -754,11 +790,11 @@ export function PortfolioView() {
             <h2 data-reveal className={`${styles.sectionTitle} ${styles.petLeadTitle}`}>
               让 AI 的存在，成为一种<span className={styles.accentText}>视觉上的陪伴</span>
             </h2>
-            <span className={styles.eyebrow}>桌面陪伴形态</span>
+            <span className={styles.eyebrow}>EXPLORATION · 桌面陪伴形态</span>
           </div>
           <p data-reveal className={styles.petIntro}>
             基于开源项目 <span className={styles.geist}>Clawd on desk</span>{" "}
-            集成，COMI 在此之上做了三层设计——把桌宠从静态装饰变成 AI 状态的实时具身化载体。
+            进行形态探索：用动作表达思考、完成与出错。以下为动作演示与状态映射设想，尚非已接入 COMI 的桌面端实时能力。
           </p>
 
           <div className={styles.petGrid}>
@@ -819,7 +855,7 @@ export function PortfolioView() {
 
           <div data-reveal className={styles.petTable}>
             <div className={styles.petTableHead}>
-              <span>AI 后端状态</span>
+              <span>拟映射的 AI 状态</span>
               <span>传统 UI</span>
               <span>COMI 桌宠</span>
             </div>
@@ -928,7 +964,7 @@ export function PortfolioView() {
             <h2 data-reveal className={styles.sectionTitle}>
               从&ldquo;Memory&rdquo;到&ldquo;关于你&rdquo;
             </h2>
-            <span className={styles.eyebrow}>功能详解 · 记忆库</span>
+            <span className={styles.eyebrow}>记忆能力 IMPLEMENTED · 下方界面为设计展示</span>
           </div>
           <p data-reveal className={styles.memoryInsight}>
             <span>早期用户测试洞察</span>
@@ -954,8 +990,7 @@ export function PortfolioView() {
               <div>
                 <h4>按用户理解组织记忆，而非按技术结构展示</h4>
                 <p>
-                  记忆仍分基本信息、偏好与习惯、长期目标、最近在做，但不暴露底层 Memory
-                  结构——你感知到的是&ldquo;COMI 了解了什么&rdquo;，而不是&ldquo;系统存了什么字段&rdquo;。
+                  设计展示将记忆组织为基本信息、偏好与习惯、长期目标、最近在做；当前产品已有分类展示，具体分组与此设计稿有所不同。
                 </p>
               </div>
             </div>
@@ -963,11 +998,12 @@ export function PortfolioView() {
               <span className={`${styles.geist} ${styles.memoryPointNo}`}>03</span>
               <div>
                 <h4>最终控制权始终是你的</h4>
-                <p>每一条记忆都能原地编辑或删除，AI 的理解可能出错，你随时可以纠正它。</p>
+                <p>每一条记忆都能编辑或删除，AI 的理解可能出错，你随时可以纠正它。</p>
               </div>
             </div>
           </div>
 
+          <p className={caseStyles.note}>DESIGNED · 以下保留已有界面设计与交互演示；不代表所有视觉细节已同步到产品。当前聊天菜单为「关于你」，记忆面板标题仍为「关于我」。</p>
           <AboutMeGallery dark={isDarkPreview} />
         </div>
       </section>
@@ -1079,7 +1115,7 @@ export function PortfolioView() {
             </span>
           </div>
           <p data-reveal className={styles.validationLede}>
-            From public interest signals to exploratory usability testing.
+            Build → Test → Learn → Iterate
           </p>
 
           {/* 01 · Public signal + usability test summary, side by side */}
@@ -1101,7 +1137,7 @@ export function PortfolioView() {
 
               <p className={styles.validationCopy}>
                 COMI 相关内容公开分享后获得持续互动，并有 25
-                位用户主动私信询问构建方式。对产品概念与实现路径提供了一层来自真实外部用户的兴趣信号。
+                位用户主动私信询问构建方式。这些是公开兴趣信号；长期使用价值仍需持续验证。
               </p>
 
               <div className={styles.validationShots}>
@@ -1165,8 +1201,7 @@ export function PortfolioView() {
             <div className={styles.validationBlock}>
               <span className={styles.setupLabel}>Research Objective</span>
               <p className={styles.setupValue}>
-                验证不同使用深度的用户是否能理解并使用：长期记忆 / About You / 记忆库 / Shared
-                Context / 陪伴式交互
+                观察长期记忆、About You / 记忆库与陪伴交互的使用体验；通过讨论了解用户对 Shared Context 的期待（设计方向，非已上线功能）。
               </p>
             </div>
             <div className={styles.validationBlock}>
@@ -1174,7 +1209,7 @@ export function PortfolioView() {
               <p className={styles.setupValue}>
                 Exploratory Usability Test
                 <br />
-                n=4 · 15–20 min / participant
+                n=4 · 线下测试 · 15–20 min / participant
               </p>
             </div>
             <div className={styles.validationBlock}>
@@ -1234,6 +1269,7 @@ export function PortfolioView() {
                 <figcaption>
                   <span className={styles.evidenceLabel}>{e.label}</span>
                   <p className={styles.evidenceBody}>{e.body}</p>
+                  <p className={caseStyles.evidenceResponse}>{e.response}</p>
                 </figcaption>
               </figure>
             ))}
@@ -1274,7 +1310,7 @@ export function PortfolioView() {
             <div data-reveal data-dir="right" className={`${styles.responseCol} ${styles.responseColNext}`}>
               <div className={styles.responseColHead}>
                 <span className={styles.responseDot} aria-hidden="true" />
-                <span className={styles.responseColTitle}>NEXT ITERATION · 探索中</span>
+                <span className={styles.responseColTitle}>DESIGNED / EXPLORATION · 下一步</span>
               </div>
               <ul className={styles.responseList}>
                 {DESIGN_RESPONSE.next.map((item) => (
@@ -1304,6 +1340,11 @@ export function PortfolioView() {
       <section id="s7" className={`${styles.section} ${styles.about}`}>
         <div className={styles.aboutGlow} />
         <div className={styles.aboutInner}>
+          <div data-reveal className={caseStyles.closing} lang="en">
+            <span className={styles.eyebrow}>PRODUCT THESIS</span>
+            <h2 className={caseStyles.subheading}>The future of AI interaction is not only about better answers, but better continuity.</h2>
+            <p>COMI is my exploration of what happens when an AI product can carry context forward.</p>
+          </div>
           <div className={styles.aboutCard}>
             <div className={styles.avatarWrap}>
               <div className={styles.avatarGlow} />
@@ -1352,7 +1393,7 @@ export function PortfolioView() {
 
           <div className={styles.aboutFooter}>
             <span>开源致谢 · Clawd on desk</span>
-            <span>最后更新 2026.08.25</span>
+            <span>最后更新 2026.09.23</span>
             <span>Made with Claude Code</span>
           </div>
         </div>
