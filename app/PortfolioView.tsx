@@ -28,7 +28,7 @@ import { ProductEvolution, MemoryFormation } from "./CaseStudySystem";
 const NAV_LINKS = [
   { href: "#s2", label: "为什么" },
   { href: "#s3", label: "产品演进" },
-  { href: "#memory-formation", label: "Memory" },
+  { href: "#memory-formation", label: "记忆机制" },
   { href: "#s4", label: "桌面陪伴" },
   { href: "#s3b", label: "界面" },
   { href: "#s3c", label: "记忆库" },
@@ -140,9 +140,9 @@ const CORE_FEATURES = [
 // re-ordered without touching markup.
 
 const PUBLIC_METRICS = [
-  { value: "25", label: "Inbound DMs · 主动私信" },
-  { value: "340+", label: "Likes · 点赞" },
-  { value: "120+", label: "Saves · 收藏" },
+  { value: "25", label: "主动私信" },
+  { value: "340+", label: "点赞" },
+  { value: "120+", label: "收藏" },
 ];
 
 // Social-feedback screenshot slots. Drop a same-named file into
@@ -152,20 +152,20 @@ const PUBLIC_SHOTS = [
   { id: "validation-public-02", alt: "小红书用户对 COMI 的兴趣留言截图 2" },
 ];
 
-const TEST_PARTICIPANT_MIX = ["Heavy AI User × 2", "New User × 1", "Casual User × 1"];
+const TEST_PARTICIPANT_MIX = ["重度 AI 用户 × 2", "AI 新用户 × 1", "轻度 AI 用户 × 1"];
 
 const INTRO_FINDINGS = [
   {
-    label: "Observed Friction · 需要解释的功能",
+    label: "需要解释的功能",
     body: '"关于我"存在触达成本；记忆删除路径不够统一；复杂信息结构会增加理解负担。',
   },
   {
-    label: "Key Insight · 关键结论",
+    label: "关键结论",
     body: "用户真正关心的不是“有多少功能”，而是上下文是否连续、记忆是否可信，以及 AI 是否真正理解自己。",
   },
   {
-    label: "Design Response · 产品回应",
-    body: "将 About You / 关于你与主动记忆机制，从“功能展示”重新组织为围绕长期理解和上下文连续性的体验系统；Shared Context 作为下一步方向，优先验证要共享的 Context 粒度。",
+    label: "产品回应",
+    body: "将 关于你与主动记忆机制，从“功能展示”重新组织为围绕长期理解和上下文连续性的体验系统；共享上下文作为下一步方向，优先验证要共享的上下文粒度。",
   },
 ];
 
@@ -190,7 +190,7 @@ const TASK_FLOW = [
 const EVIDENCE = [
   {
     code: "A",
-    label: "EVIDENCE A · MEMORY CONTROL",
+    label: "证据 A · 记忆控制",
     img: "/images/validation-evidence-memory.jpg",
     alt: "参与者聊天记录：说明发现记忆有误时，会直接告诉 AI 重新记一次，或去记忆库里手动改",
     body: "观察：用户会先在对话中纠正 AI，再进入记忆库修改。学到：可信记忆需要两条修正路径。",
@@ -198,41 +198,41 @@ const EVIDENCE = [
   },
   {
     code: "B",
-    label: "EVIDENCE B · SHARED CONTEXT",
+    label: "证据 B · 共享上下文",
     img: "/images/validation-evidence-context.jpg",
     alt: "参与者聊天记录：说明换模型时只希望带走最终结论和大纲，不需要搬运完整的修改过程",
     body: "观察：用户希望保留最初想法与最终大纲，不需要每轮修改。学到：连续性取决于保留什么。",
-    response: "DESIGNED · Shared Context 优先验证 Goal / Key Decisions / Current State，而非完整聊天搬运。",
+    response: "已设计 · 共享上下文优先验证 目标 / 关键决策 / 当前状态，而非完整聊天搬运。",
   },
   {
     code: "C",
-    label: "EVIDENCE C · COMPANION EXPERIENCE",
+    label: "证据 C · 陪伴体验",
     img: "/images/validation-evidence-companion.jpg",
     alt: "参与者聊天记录：说明喜欢 AI 发表情包、不说长句子，这些细节让对话更像和真人聊天",
     body: "观察：用户喜欢表情包与短回复，也指出浮动挂件挡字。学到：陪伴感需要轻量且不打扰。",
-    response: "EXPLORATION · 延续轻陪伴方向，并把挂件位置与遮挡问题纳入后续验证。",
+    response: "探索中 · 延续轻陪伴方向，并把挂件位置与遮挡问题纳入后续验证。",
   },
 ];
 
 const SYNTHESIS = [
   {
     no: "01",
-    title: "Context should be compressed, not copied",
+    title: "提炼上下文，而非复制历史",
     body: "不同模型之间需要延续“理解”，而不是原样搬运完整聊天历史。",
   },
   {
     no: "02",
-    title: "Memory is both continuity and self-reflection",
+    title: "记忆让理解延续，也让理解可见",
     body: "记忆既帮助 AI 保持连续性，也让用户重新看到“AI 如何理解我”。",
   },
   {
     no: "03",
-    title: "Correction needs two paths",
-    body: "用户既需要直接进入 About You / 记忆库修改，也需要在对话中即时纠正 AI。",
+    title: "修正记忆需要两条路径",
+    body: "用户既需要直接进入 关于你 / 记忆库修改，也需要在对话中即时纠正 AI。",
   },
   {
     no: "04",
-    title: "Companionship comes from small interaction details",
+    title: "陪伴感来自微小的交互细节",
     body: "表情包、语气和轻量反馈等细节，会明显改变陪伴感与产品人格感知。",
   },
 ];
@@ -240,15 +240,15 @@ const SYNTHESIS = [
 const DESIGN_RESPONSE = {
   implemented: [
     '聊天菜单入口改为「关于你」',
-    "About You / 记忆相关入口重新组织",
+    "关于你 / 记忆相关入口重新组织",
     "主动记忆机制",
-    "Memory 已实现基础可编辑 / 删除",
+    "记忆已实现基础可编辑 / 删除",
   ],
   next: [
-    "Shared Context 优先验证 Goal / Key Decisions / Current State",
-    "进一步验证用户希望跨模型共享的 Context 粒度",
+    "共享上下文优先验证 目标 / 关键决策 / 当前状态",
+    "进一步验证用户希望跨模型共享的上下文粒度",
     "优化记忆修正入口与交互反馈",
-    "EXPLORATION · COMI on Desk 与轻陪伴互动",
+    "探索中 · COMI 桌面陪伴与轻量互动",
     "继续验证长期记忆与陪伴体验之间的关系",
   ],
 };
@@ -573,8 +573,7 @@ export function PortfolioView() {
             <br />
             围绕长期理解、共享语境与情感连续性，让下一次交流接着发生。
           </p>
-          <p data-reveal className={caseStyles.heroThesis} lang="en">
-            Exploring how Memory &amp; Shared Context can make AI interactions continuous rather than session-based.
+          <p data-reveal className={caseStyles.heroThesis}>探索记忆与共享上下文如何让 AI 交互持续延续，而不局限于一次次独立会话。
           </p>
           <div data-reveal className={styles.heroCtas}>
             <a href="#s2" className={styles.heroCtaPrimary}>
@@ -647,7 +646,7 @@ export function PortfolioView() {
               暂时无法在页面内播放，<a href="/videos/comi-experience.mp4">直接打开短片</a>。
             </p>
           )}
-          <p className={styles.filmHint}>体验短片包含已实现能力与设计探索；具体状态见下方 Product Evolution。</p>
+          <p className={styles.filmHint}>体验短片包含已实现能力与设计探索；具体状态见下方 产品演进。</p>
         </div>
       </section>
 
@@ -671,18 +670,16 @@ export function PortfolioView() {
             <div className={styles.whyCards}>
               <div data-reveal data-dir="left" className={styles.whyCard}>
                 <p>
-                  <span className={caseStyles.problemLabel}>USER PROBLEM</span>
-                  Users repeatedly explain themselves, their preferences and previous context.
+                  <span className={caseStyles.problemLabel}>用户困扰</span>长期使用多个 AI 产品时，用户需要反复解释自己的情况、偏好与背景信息；需要多个 AI 模型共同处理问题时，分散的信息又增加了理解与衔接的负担。
                 </p>
               </div>
               <div data-reveal data-dir="right" className={styles.whyCard}>
                 <p>
-                  <span className={caseStyles.problemLabel}>PRODUCT PROBLEM</span>
-                  AI interactions are often optimized for individual sessions rather than continuity across time.
+                  <span className={caseStyles.problemLabel}>产品问题</span>AI 交互往往围绕单次会话进行优化，却缺少跨时间延续理解的设计。
                 </p>
               </div>
               <div data-reveal className={`${styles.whyCard} ${styles.whyCardHighlight}`}>
-                <p><span className={caseStyles.problemLabel}>DESIGN QUESTION</span>How might an AI product retain useful context over time without overwhelming each new interaction?</p>
+                <p><span className={caseStyles.problemLabel}>设计问题</span>如何让 AI 产品长期保留有用的上下文，又不让这些信息成为每一次新交互的负担？</p>
                 <p className={styles.whyCardHighlightSub}>让个人记忆属于用户，而不是属于某一个模型。</p>
               </div>
             </div>
@@ -700,7 +697,7 @@ export function PortfolioView() {
               从三项核心能力，到多模型协作的下一步
             </h2>
             <span className={`${styles.eyebrow} ${styles.featuresEyebrow}`}>
-              CORE FEATURES · 核心功能
+              核心功能
             </span>
           </div>
           <p data-reveal className={styles.productIntro}>
@@ -734,12 +731,11 @@ export function PortfolioView() {
                   <span
                     className={`${styles.geist} ${styles.statusPill}`}
                   >
-                    IMPLEMENTED
+                    已实现
                   </span>
                 </div>
                 <h3 className={styles.featureTitle}>
-                  {f.no} {f.title}
-                  {f.titleZh ? <> · {f.titleZh}</> : null}
+                  {f.no} {f.titleZh}
                 </h3>
                 <p className={styles.featureDesc}>{f.body}</p>
                 {f.note ? <p className={styles.featureNote}>{f.note}</p> : null}
@@ -763,13 +759,13 @@ export function PortfolioView() {
                   </svg>
                 </div>
                 <span className={`${styles.geist} ${styles.statusPill} ${styles.featureExplorationBadge}`}>
-                  EXPLORATION
+                  探索中
                 </span>
               </div>
-              <h3 className={styles.featureTitle}>04 LLM Roundtable · 多模型交叉验证</h3>
+              <h3 className={styles.featureTitle}>04 多模型交叉验证</h3>
               <p className={styles.featureDesc}>让多个模型在同一份共享上下文里同时在场，不是为了凑更多答案，而是让它们的分歧变得可见、并各自举证。当一个模型给出结论，另一个可以质疑、补证或指出它给不出来源——用户据此从&quot;几个说法&quot;收敛到&quot;一个可验证的结论&quot;。</p>
               <p className={`${styles.featureNote} ${styles.featureExplorationTagline}`}>
-                <em>Not more answers, but visible disagreement and evidence-based convergence.</em>
+                <em>追求的不是更多答案，而是让分歧可见，并依据证据逐步收敛。</em>
               </p>
             </div>
           </div>
@@ -790,7 +786,7 @@ export function PortfolioView() {
             <h2 data-reveal className={`${styles.sectionTitle} ${styles.petLeadTitle}`}>
               让 AI 的存在，成为一种<span className={styles.accentText}>视觉上的陪伴</span>
             </h2>
-            <span className={styles.eyebrow}>EXPLORATION · 桌面陪伴形态</span>
+            <span className={styles.eyebrow}>探索中 · 桌面陪伴形态</span>
           </div>
           <p data-reveal className={styles.petIntro}>
             基于开源项目 <span className={styles.geist}>Clawd on desk</span>{" "}
@@ -888,7 +884,7 @@ export function PortfolioView() {
                 温柔不是装饰，而是让每一次打开、输入和等待都更自然。
               </p>
               <div data-reveal className={styles.nameConcept}>
-                <span className={styles.nameConceptLabel}>NAME CONCEPT · 命名理念</span>
+                <span className={styles.nameConceptLabel}>命名理念</span>
                 <p className={`${styles.geist} ${styles.nameConceptEquation}`}>
                   COMI = Comma + I
                 </p>
@@ -964,7 +960,7 @@ export function PortfolioView() {
             <h2 data-reveal className={styles.sectionTitle}>
               从&ldquo;Memory&rdquo;到&ldquo;关于你&rdquo;
             </h2>
-            <span className={styles.eyebrow}>记忆能力 IMPLEMENTED · 下方界面为设计展示</span>
+            <span className={styles.eyebrow}>记忆能力已实现 · 下方界面为设计展示</span>
           </div>
           <p data-reveal className={styles.memoryInsight}>
             <span>早期用户测试洞察</span>
@@ -1003,7 +999,7 @@ export function PortfolioView() {
             </div>
           </div>
 
-          <p className={caseStyles.note}>DESIGNED · 以下保留已有界面设计与交互演示；不代表所有视觉细节已同步到产品。当前聊天菜单为「关于你」，记忆面板标题仍为「关于我」。</p>
+          <p className={caseStyles.note}>已设计 · 以下保留已有界面设计与交互演示；不代表所有视觉细节已同步到产品。当前聊天菜单为「关于你」，记忆面板标题仍为「关于我」。</p>
           <AboutMeGallery dark={isDarkPreview} />
         </div>
       </section>
@@ -1111,18 +1107,17 @@ export function PortfolioView() {
               产品之外的真实反馈
             </h2>
             <span className={`${styles.eyebrow} ${styles.validationEyebrow}`}>
-              VALIDATION · 外部信号与用户验证
+              外部信号与用户验证
             </span>
           </div>
-          <p data-reveal className={styles.validationLede}>
-            Build → Test → Learn → Iterate
+          <p data-reveal className={styles.validationLede}>构建 → 测试 → 学习 → 迭代
           </p>
 
           {/* 01 · Public signal + usability test summary, side by side */}
           <div className={styles.validationIntro}>
             <div data-reveal data-dir="left">
               <div className={styles.validationColHead}>
-                <span className={styles.validationColTitle}>PUBLIC INTEREST SIGNAL</span>
+                <span className={styles.validationColTitle}>公开内容反馈</span>
                 <span className={styles.validationColTag}>公开兴趣信号</span>
               </div>
 
@@ -1149,7 +1144,7 @@ export function PortfolioView() {
 
             <div data-reveal data-dir="right">
               <div className={styles.validationColHead}>
-                <span className={styles.validationColTitle}>EXPLORATORY USABILITY TEST</span>
+                <span className={styles.validationColTitle}>探索性可用性测试</span>
                 <span className={styles.validationColTag}>N=4 用户测试</span>
               </div>
 
@@ -1177,7 +1172,7 @@ export function PortfolioView() {
           {/* 02 · Test setup */}
           <div className={styles.validationStep}>
             <span className={styles.validationStepNo}>02</span>
-            <span className={styles.validationStepLabel}>Exploratory Usability Test · N=4</span>
+            <span className={styles.validationStepLabel}>探索性可用性测试 · 4 位参与者</span>
           </div>
           <div data-reveal className={styles.validationSetupHead}>
             <h3 className={styles.sectionTitle} style={{ fontSize: "clamp(21px, 2.2vw, 30px)" }}>
@@ -1199,21 +1194,20 @@ export function PortfolioView() {
 
           <div data-reveal className={styles.validationSetupGrid}>
             <div className={styles.validationBlock}>
-              <span className={styles.setupLabel}>Research Objective</span>
+              <span className={styles.setupLabel}>研究目标</span>
               <p className={styles.setupValue}>
-                观察长期记忆、About You / 记忆库与陪伴交互的使用体验；通过讨论了解用户对 Shared Context 的期待（设计方向，非已上线功能）。
+                观察长期记忆、关于你 / 记忆库与陪伴交互的使用体验；通过讨论了解用户对 Shared Context 的期待（设计方向，非已上线功能）。
               </p>
             </div>
             <div className={styles.validationBlock}>
-              <span className={styles.setupLabel}>Method</span>
-              <p className={styles.setupValue}>
-                Exploratory Usability Test
+              <span className={styles.setupLabel}>研究方法</span>
+              <p className={styles.setupValue}>探索性可用性测试
                 <br />
-                n=4 · 线下测试 · 15–20 min / participant
+                n=4 · 线下测试 · 每人 15–20 分钟
               </p>
             </div>
             <div className={styles.validationBlock}>
-              <span className={styles.setupLabel}>Participants</span>
+              <span className={styles.setupLabel}>参与者</span>
               <ul className={styles.participantList}>
                 {RESEARCH_PARTICIPANTS.map((p) => (
                   <li key={p.code}>
@@ -1228,15 +1222,14 @@ export function PortfolioView() {
           {/* 03 · Task flow */}
           <div className={`${styles.validationStep} ${styles.validationStepGap}`}>
             <span className={styles.validationStepNo}>03</span>
-            <span className={styles.validationStepLabel}>Core Task Flow · 核心任务流程</span>
+            <span className={styles.validationStepLabel}>核心任务流程</span>
           </div>
           <div data-reveal className={styles.taskFlow}>
             {TASK_FLOW.map((step, i) => (
               <Fragment key={step.en}>
                 <div className={styles.taskFlowStep}>
                   <span className={styles.taskFlowNo}>{i + 1}</span>
-                  <span className={styles.taskFlowEn}>{step.en}</span>
-                  <span className={styles.taskFlowZh}>{step.zh}</span>
+                  <span className={styles.taskFlowEn}>{step.zh}</span>
                 </div>
                 {i < TASK_FLOW.length - 1 ? (
                   <div className={styles.taskFlowArrow} aria-hidden="true">
@@ -1250,7 +1243,7 @@ export function PortfolioView() {
           {/* 04 · Evidence from real conversations */}
           <div className={`${styles.validationStep} ${styles.validationStepGap}`}>
             <span className={styles.validationStepNo}>04</span>
-            <span className={styles.validationStepLabel}>Evidence From Real Conversations</span>
+            <span className={styles.validationStepLabel}>来自真实对话的证据</span>
           </div>
           <p data-reveal className={styles.validationCopy} style={{ maxWidth: "46em" }}>
             以下三段来自真实参与者的原始对话记录（已截取相关片段），而非转述或复述。
@@ -1278,7 +1271,7 @@ export function PortfolioView() {
           {/* 05 · Cross-participant synthesis */}
           <div className={`${styles.validationStep} ${styles.validationStepGap}`}>
             <span className={styles.validationStepNo}>05</span>
-            <span className={styles.validationStepLabel}>Cross-Participant Synthesis</span>
+            <span className={styles.validationStepLabel}>跨参与者洞察归纳</span>
           </div>
           <div className={styles.synthesisGrid}>
             {SYNTHESIS.map((s) => (
@@ -1293,13 +1286,13 @@ export function PortfolioView() {
           {/* 06 · Design response */}
           <div className={`${styles.validationStep} ${styles.validationStepGap}`}>
             <span className={styles.validationStepNo}>06</span>
-            <span className={styles.validationStepLabel}>Design Response · 产品回应</span>
+            <span className={styles.validationStepLabel}>产品回应</span>
           </div>
           <div className={styles.responseGrid}>
             <div data-reveal data-dir="left" className={styles.responseCol}>
               <div className={styles.responseColHead}>
                 <span className={styles.responseDot} aria-hidden="true" />
-                <span className={styles.responseColTitle}>IMPLEMENTED · 已落地</span>
+                <span className={styles.responseColTitle}>已实现</span>
               </div>
               <ul className={styles.responseList}>
                 {DESIGN_RESPONSE.implemented.map((item) => (
@@ -1310,7 +1303,7 @@ export function PortfolioView() {
             <div data-reveal data-dir="right" className={`${styles.responseCol} ${styles.responseColNext}`}>
               <div className={styles.responseColHead}>
                 <span className={styles.responseDot} aria-hidden="true" />
-                <span className={styles.responseColTitle}>DESIGNED / EXPLORATION · 下一步</span>
+                <span className={styles.responseColTitle}>已设计 / 探索中</span>
               </div>
               <ul className={styles.responseList}>
                 {DESIGN_RESPONSE.next.map((item) => (
@@ -1326,9 +1319,7 @@ export function PortfolioView() {
               &ldquo;验证改变的不是某一个按钮，而是我对 COMI
               核心价值的理解：用户真正需要的不是更多 AI 功能，而是一段可以延续的上下文关系。&rdquo;
             </p>
-            <p className={styles.validationEndingEn}>
-              Validation shifted the question from &ldquo;What should COMI do?&rdquo; to
-              &ldquo;What makes users want to continue the relationship?&rdquo;
+            <p className={styles.validationEndingEn}>用户验证让问题从“COMI 应该做什么”，转向“什么让用户愿意延续这段关系”。
             </p>
           </div>
         </div>
@@ -1340,10 +1331,10 @@ export function PortfolioView() {
       <section id="s7" className={`${styles.section} ${styles.about}`}>
         <div className={styles.aboutGlow} />
         <div className={styles.aboutInner}>
-          <div data-reveal className={caseStyles.closing} lang="en">
-            <span className={styles.eyebrow}>PRODUCT THESIS</span>
-            <h2 className={caseStyles.subheading}>The future of AI interaction is not only about better answers, but better continuity.</h2>
-            <p>COMI is my exploration of what happens when an AI product can carry context forward.</p>
+          <div data-reveal className={caseStyles.closing}>
+            <span className={styles.eyebrow}>产品主张</span>
+            <h2 className={caseStyles.subheading}>AI 交互的未来，不仅在于更好的回答，也在于理解能够持续。</h2>
+            <p>COMI 是我的一次探索：当 AI 产品能够承接过去的上下文，人与 AI 的互动会发生什么变化？</p>
           </div>
           <div className={styles.aboutCard}>
             <div className={styles.avatarWrap}>

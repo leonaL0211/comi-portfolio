@@ -34,3 +34,7 @@
 .closing p { margin-top: 14px; color: var(--ink-mute); font-size: 15px; line-height: 1.8; }
 @media (max-width: 1000px) { .memoryFlow { grid-template-columns: 1fr; gap: 22px; } .memoryFlow li { display: flex; gap: 14px; align-items: baseline; } .memoryFlow strong { margin: 0; } .memoryFlow li:not(:last-child)::after { content: "↓"; top: auto; bottom: -21px; left: 24px; right: auto; } }
 @media (max-width: 700px) { .threeColumns { grid-template-columns: 1fr; gap: 22px; } .contextSources { flex-direction: column; gap: 12px; } .contextSources div { flex: none; } }
+
+/* Center each memory-flow step at every screen size. */
+.memoryFlow li { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; }
+.memoryFlow strong { margin-top: 0; }
